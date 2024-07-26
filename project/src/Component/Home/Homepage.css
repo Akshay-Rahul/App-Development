@@ -1,0 +1,32 @@
+.full-page-container {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+.hero-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  min-height: 100vh;
+  padding: 20px;
+  background: url('./bg.jpg') no-repeat center center;
+  background-size: cover;
+  color: white;
+}
+
+.hero-container h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.hero-container p {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
