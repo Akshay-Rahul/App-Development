@@ -69,6 +69,36 @@
       "email": "asd@gmail.com",
       "password": "asd",
       "id": 11
+    },
+    {
+      "username": "as",
+      "email": "akshayrahul14@gmail.com",
+      "password": "as",
+      "id": 12
+    },
+    {
+      "username": "akshay",
+      "email": "asd@gmail.com",
+      "password": "asd",
+      "id": 13
+    },
+    {
+      "username": "as",
+      "email": "asd@gmail.com",
+      "password": "as",
+      "id": 14
+    },
+    {
+      "username": "asd",
+      "email": "asdr@gmail.com",
+      "password": "123",
+      "id": 15
+    },
+    {
+      "username": "Akshay",
+      "email": "akshayrahul14@gmail.com",
+      "password": "123",
+      "id": 16
     }
   ]
 }
