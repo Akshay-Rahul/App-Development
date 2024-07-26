@@ -1,15 +1,15 @@
-// LoginForm.js
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './LoginForm.css';
+import './LoginForm.css'; // Reuse the same CSS file
 import { FaUser, FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useAuth } from '../Assets/AuthContext';
 import Noty from 'noty';
 import 'noty/lib/noty.css';
 import 'noty/lib/themes/mint.css';
+import Navbar1 from '../Home/Navbar1';
 
-const LoginForm = () => {
+const AdminLogin = () => {
   const [loginData, setLoginData] = useState({
     username: '',
     password: ''
@@ -29,18 +29,18 @@ const LoginForm = () => {
 
     try {
       const response = await axios.get('http://localhost:8080/users');
-      const user = response.data.find(user => 
-        user.username === loginData.username && user.password === loginData.password);
+      const admin = response.data.find(user => 
+        user.username === loginData.username && user.password === loginData.password && user.role === 'admin');
 
-      if (user) {
-        login(user);
+      if (admin) {
+        login(admin);
         new Noty({
           type: 'success',
           layout: 'topRight',
           text: 'Login successful',
           timeout: 3000,
         }).show();
-        navigate('/');
+        navigate('/admin-dashboard');
       } else {
         new Noty({
           type: 'error',
@@ -68,7 +68,7 @@ const LoginForm = () => {
     <div className='login-page'>
       <div className='wrapper'>
         <form onSubmit={handleSubmit}>
-          <h1>Login</h1>
+          <h1>Admin Login</h1>
           <div className='input-box'>
             <input 
               type="text" 
@@ -100,7 +100,7 @@ const LoginForm = () => {
           </div>
           <button type='submit'>Login</button>
           <div className='register-link'>
-            <p>Don't have an account? <Link to="/register">Register</Link></p>
+            <p>Don't have an account? <Link to="/admin-register">Register</Link></p>
           </div>
         </form>
       </div>
@@ -108,4 +108,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default AdminLogin;

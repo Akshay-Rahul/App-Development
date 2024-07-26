@@ -1,104 +1,53 @@
 {
   "users": [
     {
+      "id": 1,
+      "username": "admin1",
+      "email": "admin1@example.com",
+      "password": "adminpassword1",
+      "role": "admin"
+    },
+    {
+      "id": 2,
+      "username": "admin2",
+      "email": "admin2@example.com",
+      "password": "adminpassword2",
+      "role": "admin"
+    },
+    {
+      "id": 3,
+      "username": "user1",
+      "email": "user1@example.com",
+      "password": "userpassword1",
+      "role": "user"
+    },
+    {
+      "id": 4,
+      "username": "user2",
+      "email": "user2@example.com",
+      "password": "userpassword2",
+      "role": "user"
+    },
+    {
       "username": "asd",
       "email": "asd@gmail.com",
       "password": "asd",
-      "confirmPassword": "asd",
-      "id": 1
-    },
-    {
-      "username": "asd2",
-      "password": "asd",
-      "id": 2
-    },
-    {
-      "username": "asd2",
-      "password": "asd",
-      "id": 3
-    },
-    {
-      "id": "0ee4",
-      "username": "asd",
-      "password": "asd"
-    },
-    {
-      "username": "asd",
-      "email": "asd@gmail.com",
-      "password": "asd",
-      "id": 4
-    },
-    {
-      "username": "asd",
-      "email": "asd@gmail.com",
-      "password": "asd",
+      "role": "user",
       "id": 5
     },
     {
       "username": "asd",
       "email": "asd@gmail.com",
       "password": "asd",
+      "role": "user",
       "id": 6
     },
     {
-      "username": "asd2",
+      "username": "asd1",
       "email": "asd@gmail.com",
-      "password": "asd",
+      "password": "asd1",
+      "role": "admin",
       "id": 7
-    },
-    {
-      "username": "asd2",
-      "email": "asd@gmail.com",
-      "password": "asd",
-      "id": 8
-    },
-    {
-      "username": "asd2",
-      "email": "asd@gmail.com",
-      "password": "asd",
-      "id": 9
-    },
-    {
-      "username": "asd",
-      "email": "asd@gmail.com",
-      "password": "asd",
-      "id": 10
-    },
-    {
-      "username": "asd",
-      "email": "asd@gmail.com",
-      "password": "asd",
-      "id": 11
-    },
-    {
-      "username": "as",
-      "email": "akshayrahul14@gmail.com",
-      "password": "as",
-      "id": 12
-    },
-    {
-      "username": "akshay",
-      "email": "asd@gmail.com",
-      "password": "asd",
-      "id": 13
-    },
-    {
-      "username": "as",
-      "email": "asd@gmail.com",
-      "password": "as",
-      "id": 14
-    },
-    {
-      "username": "asd",
-      "email": "asdr@gmail.com",
-      "password": "123",
-      "id": 15
-    },
-    {
-      "username": "Akshay",
-      "email": "akshayrahul14@gmail.com",
-      "password": "123",
-      "id": 16
     }
   ]
 }

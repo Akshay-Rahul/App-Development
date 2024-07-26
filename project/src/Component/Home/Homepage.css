@@ -1,12 +1,14 @@
+/* General container style for the entire page */
 .full-page-container {
   margin: 0;
   padding: 0;
   width: 100vw;
-  height: 100vh;
   font-family: Arial, sans-serif;
   box-sizing: border-box;
+  overflow-x: hidden; /* Prevent horizontal overflow */
 }
 
+/* Hero section styles */
 .hero-container {
   display: flex;
   flex-direction: column;
@@ -14,7 +16,7 @@
   justify-content: center;
   text-align: center;
   width: 100%;
-  min-height: 100vh;
+  height: 100vh; /* Full viewport height */
   padding: 20px;
   background: url('./bg.jpg') no-repeat center center;
   background-size: cover;
@@ -29,4 +31,124 @@
 .hero-container p {
   font-size: 1.5rem;
   margin-bottom: 2rem;
+}
+
+/* About section styles */
+.about-section {
+  padding: 4rem 2rem;
+  text-align: center;
+  background: #ffffff;
+  height: 100vh; /* Full viewport height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.about-section p {
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Discover section styles */
+.discover-section {
+  padding: 4rem 2rem;
+  text-align: center;
+  background: #f0f0f0;
+  height: 100vh; /* Full viewport height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.discover-section p {
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Services section styles */
+.services-section {
+  padding: 4rem 2rem;
+  text-align: center;
+  background: #f9f9f9;
+  height: 100vh; /* Full viewport height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.services-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.service-card {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 1rem;
+  width: 250px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.service-card h3 {
+  margin-bottom: 1rem;
+}
+
+.service-card p {
+  margin-bottom: 0;
+}
+
+/* Footer styles */
+.footer {
+  background-color: #000;
+  color: #fff;
+  padding: 2rem 0;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.footer-column {
+  margin: 1rem;
+}
+
+.footer-column h3 {
+  margin-bottom: 1rem;
+}
+
+.footer-column ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-column ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 2rem;
+  border-top: 1px solid #444;
+}
+
+.footer-icons a img {
+  width: 24px;
+  margin-left: 1rem;
+}
+
+.footer-bottom p {
+  margin: 0;
 }

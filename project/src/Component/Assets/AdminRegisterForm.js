@@ -3,13 +3,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Modal, Box, Typography, Button } from '@mui/material';
 import { FaUser, FaLock, FaEnvelope } from 'react-icons/fa';
-import { Link as RouterLink } from 'react-router-dom';
 import Noty from 'noty';
 import 'noty/lib/noty.css';
 import 'noty/lib/themes/mint.css';
 import './RegisterForm.css';
 
-const RegisterForm = () => {
+const AdminRegisterForm = () => {
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [formData, setFormData] = useState({
     username: '',
@@ -44,10 +43,11 @@ const RegisterForm = () => {
 
     try {
       const { username, email, password } = formData;
-      const response = await axios.post('http://localhost:8080/users', {
+      await axios.post('http://localhost:8080/users', {
         username,
         email,
         password,
+        role: 'admin'
       });
       new Noty({
         type: 'success',
@@ -55,7 +55,7 @@ const RegisterForm = () => {
         text: 'Registration successful',
         timeout: 3000,
       }).show();
-      navigate('/login');
+      navigate('/admin-login');
     } catch (error) {
       new Noty({
         type: 'error',
@@ -70,7 +70,7 @@ const RegisterForm = () => {
     <div className='register-page'>
       <div className='wrapper'>
         <form onSubmit={handleSubmit}>
-          <h1>Register</h1>
+          <h1>Register as Admin</h1>
           <div className='input-box'>
             <input
               type="text"
@@ -173,4 +173,4 @@ const RegisterForm = () => {
   );
 };
 
-export default RegisterForm;
+export default AdminRegisterForm;
