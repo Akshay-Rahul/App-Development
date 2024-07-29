@@ -1,53 +1,25 @@
 {
   "users": [
     {
-      "id": 1,
-      "username": "admin1",
-      "email": "admin1@example.com",
-      "password": "adminpassword1",
-      "role": "admin"
-    },
-    {
-      "id": 2,
-      "username": "admin2",
-      "email": "admin2@example.com",
-      "password": "adminpassword2",
-      "role": "admin"
-    },
-    {
-      "id": 3,
-      "username": "user1",
-      "email": "user1@example.com",
-      "password": "userpassword1",
-      "role": "user"
-    },
-    {
-      "id": 4,
-      "username": "user2",
-      "email": "user2@example.com",
-      "password": "userpassword2",
-      "role": "user"
+      "username": "asd",
+      "email": "asd2@gmail.com",
+      "password": "asd",
+      "role": "user",
+      "id": 1
     },
     {
       "username": "asd",
-      "email": "asd@gmail.com",
+      "email": "asdr@gmail.com",
       "password": "asd",
-      "role": "user",
-      "id": 5
-    },
-    {
-      "username": "asd",
-      "email": "asd@gmail.com",
-      "password": "asd",
-      "role": "user",
-      "id": 6
-    },
-    {
-      "username": "asd1",
-      "email": "asd@gmail.com",
-      "password": "asd1",
       "role": "admin",
-      "id": 7
+      "id": 2
+    },
+    {
+      "username": "asd2",
+      "email": "asd@gmail.com",
+      "password": "asd",
+      "role": "admin",
+      "id": 3
     }
   ]
 }

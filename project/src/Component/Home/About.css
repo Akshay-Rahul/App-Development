@@ -1,0 +1,41 @@
+.about-section {
+    padding: 4rem 2rem;
+    background: url('./bg3.jpg') no-repeat center center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+  
+  .about-section .content-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    width: 100%;
+  }
+  
+  .about-section .content {
+    flex: 1;
+    max-width: 50%;
+    padding-right: 2rem;
+  }
+  
+  .about-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .about-section p {
+    line-height: 1.6;
+    font-size: 1.2rem;
+  }
+  
+  .about-section .section-image {
+    flex: 1;
+    max-width: 50%;
+    height: auto;
+    border-radius: 8px;
+  }
+  

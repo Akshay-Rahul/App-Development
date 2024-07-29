@@ -14,7 +14,7 @@
 }
 
 .navbar1.transparent {
-  background: transparent; /* Make navbar transparent on the homepage */
+  background:transparent; /* Make navbar transparent on the homepage */
 }
 
 .navbar1.black-background {
@@ -43,9 +43,8 @@
   display: flex;
   align-items: center;
   position: absolute; /* Absolute positioning */
-  left: 150px; /* Adjust position as needed */
+  left: 130px; /* Adjust position as needed */
 }
-
 /* Navigation menu styling */
 .nav-menu1 {
   display: flex;
@@ -58,7 +57,7 @@
 
 .nav-item1 {
   height: 80px;
-  margin-right: 20px; /* Add margin to move items to the right */
+  margin-left: 170px; /* Adjust margin to move items further to the right */
 }
 
 /* Remove margin from the last item to prevent extra space on the right */
@@ -76,9 +75,11 @@
   cursor: pointer;
 }
 
-.nav-links1:hover {
+.nav-links1:hover,
+.nav-links1-active {
   border-bottom: 2px solid blue;
 }
+
 
 /* Button styling */
 .btn1, .btn-login1 {
@@ -176,21 +177,31 @@
 .dropdown-item1:hover {
   background-color: #f1f1f1;
 }
-
-.btn-logout1 {
-  width: 100%;
-  padding: 1rem 1.5rem; /* Increased padding */
-  border: none;
-  background-color: transparent;
-  color: #333;
+/* Button styling */
+.btn1, .btn-login1 {
+  display: inline-block;
+  padding: 10px 22px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 50px; /* Rounded edges */
+  transition: all 0.3s ease-out;
+  background: linear-gradient(90deg, #4a00e0, #8e2de2); /* Gradient background */
+  color: #fff; /* White text */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Shadow for depth */
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 10px; /* Space between icon and text */
-  transition: background-color 0.3s;
+  border: none; /* Remove default border */
+  margin: 0 10px; /* Space between buttons */
 }
 
-.btn-logout1:hover {
-  background-color: #f1f1f1;
+.btn1:hover, .btn-login1:hover {
+  background: linear-gradient(90deg, #8e2de2, #4a00e0); /* Reverse gradient on hover */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3); /* Enhance shadow on hover */
+  transform: translateY(-2px); /* Slight lift on hover */
+}
+
+.btn1:active, .btn-login1:active {
+  transform: translateY(0); /* Reset lift on click */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Reset shadow on click */
 }

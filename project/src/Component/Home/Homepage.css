@@ -3,9 +3,9 @@
   margin: 0;
   padding: 0;
   width: 100vw;
-  font-family: Arial, sans-serif;
+  font-family: 'Poppins', Arial, sans-serif;
   box-sizing: border-box;
-  overflow-x: hidden; /* Prevent horizontal overflow */
+  overflow-x: hidden;
 }
 
 /* Hero section styles */
@@ -16,7 +16,7 @@
   justify-content: center;
   text-align: center;
   width: 100%;
-  height: 100vh; /* Full viewport height */
+  height: 100vh;
   padding: 20px;
   background: url('./bg.jpg') no-repeat center center;
   background-size: cover;
@@ -31,74 +31,6 @@
 .hero-container p {
   font-size: 1.5rem;
   margin-bottom: 2rem;
-}
-
-/* About section styles */
-.about-section {
-  padding: 4rem 2rem;
-  text-align: center;
-  background: #ffffff;
-  height: 100vh; /* Full viewport height */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.about-section p {
-  max-width: 800px;
-  margin: 0 auto;
-  line-height: 1.6;
-}
-
-/* Discover section styles */
-.discover-section {
-  padding: 4rem 2rem;
-  text-align: center;
-  background: #f0f0f0;
-  height: 100vh; /* Full viewport height */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.discover-section p {
-  max-width: 800px;
-  margin: 0 auto;
-  line-height: 1.6;
-}
-
-/* Services section styles */
-.services-section {
-  padding: 4rem 2rem;
-  text-align: center;
-  background: #f9f9f9;
-  height: 100vh; /* Full viewport height */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.services-container {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-}
-
-.service-card {
-  background: white;
-  border-radius: 8px;
-  padding: 1.5rem;
-  margin: 1rem;
-  width: 250px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.service-card h3 {
-  margin-bottom: 1rem;
-}
-
-.service-card p {
-  margin-bottom: 0;
 }
 
 /* Footer styles */
@@ -134,6 +66,11 @@
 .footer-column ul li a {
   color: #fff;
   text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-column ul li a:hover {
+  color: #ddd; /* Lighter color on hover */
 }
 
 .footer-bottom {
@@ -144,11 +81,20 @@
   border-top: 1px solid #444;
 }
 
-.footer-icons a img {
-  width: 24px;
-  margin-left: 1rem;
-}
-
 .footer-bottom p {
   margin: 0;
+}
+
+.footer-icons {
+  margin-top: 1rem;
+}
+
+.footer-icons a {
+  margin-left: 1rem;
+  color: #fff;
+  transition: color 0.3s ease;
+}
+
+.footer-icons a:hover {
+  color: #ddd; /* Lighter color on hover */
 }

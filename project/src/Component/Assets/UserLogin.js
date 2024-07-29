@@ -7,7 +7,6 @@ import { useAuth } from '../Assets/AuthContext';
 import Noty from 'noty';
 import 'noty/lib/noty.css';
 import 'noty/lib/themes/mint.css';
-import Navbar1 from '../Home/Navbar1';
 
 const UserLogin = () => {
   const [loginData, setLoginData] = useState({

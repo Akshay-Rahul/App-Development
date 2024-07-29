@@ -8,8 +8,12 @@ import AdminLogin from './Component/Assets/AdminLogin';
 import AdminRegisterForm from './Component/Assets/AdminRegisterForm';
 import UserLogin from './Component/Assets/UserLogin';
 import UserRegisterForm from './Component/Assets/UserRegisterForm';
-import AdminDashboard from './Component/Dashboard/AdminDashboard';
-import UserDashboard from './Component/Dashboard/UserDashboard';
+import { CssBaseline } from '@mui/material';
+import About from './Component/Home/About';
+import Services from './Component/Home/Services';
+import AdminDashboard from './Component/Dashboard/Admin/AdminDashboard';
+import UserDashboard from './Component/Dashboard/User/UserDashboard';
+import Discover from './Component/Home/Discover';
 
 // PrivateRoute component to handle role-based access
 const PrivateRoute = ({ element, allowedRoles }) => {
@@ -17,7 +21,7 @@ const PrivateRoute = ({ element, allowedRoles }) => {
 
   if (!user) {
     // If no user is logged in, redirect to login
-    return <Navigate to="/user-login" />;
+    return <Navigate to="/" />;
   }
 
   if (!allowedRoles.includes(user.role)) {
@@ -31,6 +35,7 @@ const PrivateRoute = ({ element, allowedRoles }) => {
 function App() {
   return (
     <AuthProvider>
+      <CssBaseline/>
       <BrowserRouter>
         <div className="app-container">
           <Routes>
@@ -39,6 +44,9 @@ function App() {
             <Route path="/admin-register" element={<AdminRegisterForm />} />
             <Route path="/user-login" element={<UserLogin />} />
             <Route path="/user-register" element={<UserRegisterForm />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/service" element={<Services />} />
+            <Route path="/discover" element={<Discover />} />
             <Route 
               path="/admin-dashboard" 
               element={<PrivateRoute element={<AdminDashboard />} allowedRoles={['admin']} />} 
