@@ -6,13 +6,16 @@
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@mui/icons-material": "^5.16.5",
     "@mui/material": "^5.16.5",
+    "@tremor/react": "^3.17.4",
     "axios": "^1.7.2",
     "chart.js": "^4.4.3",
+    "date-fns": "^3.6.0",
     "install": "^0.13.0",
-    "json-server": "^0.16.3",
+    "json-server": "^1.0.0-beta.1",
     "noty": "^3.2.0-beta-deprecated",
     "npm": "^10.8.2",
     "react": "^18.3.1",
+    "react-calendar": "^5.0.0",
     "react-dom": "^18.3.1",
     "react-icons": "^5.2.1",
     "react-loader-spinner": "^6.1.6",
@@ -20,7 +23,8 @@
     "react-router-dom": "^6.25.1",
     "react-scroll": "^1.9.0",
     "react-toastify": "^10.0.5",
+    "recharts": "^2.12.7",
     "styled-components": "^6.1.12",
-    "sweetalert2": "^11.12.3"
+    "sweetalert2": "^11.6.13"
   }
 }

@@ -21,5 +21,35 @@
       "role": "admin",
       "id": 3
     }
+  ],
+  "events": [
+    {
+      "title": "asd",
+      "date": "2024-07-18",
+      "location": "sadsadas",
+      "description": "asd",
+      "id": 1
+    },
+    {
+      "title": "asd",
+      "date": "2024-07-08",
+      "location": "asd",
+      "description": "asd",
+      "id": 2
+    },
+    {
+      "title": "aswin",
+      "date": "2024-07-24",
+      "location": "asdas",
+      "description": "asdas",
+      "id": 3
+    },
+    {
+      "title": "harish",
+      "date": "2024-07-12",
+      "location": "asd",
+      "description": "sad",
+      "id": 4
+    }
   ]
 }

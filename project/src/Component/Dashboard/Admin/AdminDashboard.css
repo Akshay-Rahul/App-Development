@@ -1,90 +1,130 @@
-/* AdminDashboard.css */
-
+/* Dashboard Container */
 .dashboard-container {
     font-family: 'Poppins', sans-serif;
     display: flex;
     flex-direction: column;
     height: 100vh;
-    background: #f4f4f4;
+    background: #f9fafb; /* Light Gray Background */
 }
 
+/* Navbar */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #333;
-    color: #fff;
-    padding: 1rem;
+    background: #ffffff; /* White Background for Navbar */
+    color: #1f2937; /* Dark Slate Color for Text */
+    padding: 1rem 2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid #e5e7eb; /* Light Gray Border */
+    position: fixed; /* Fixed Position */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    height: 60px; /* Adjust to the height of your navbar */
 }
 
+/* Adjust Content Area for Fixed Navbar */
+.dashboard-content {
+    display: flex;
+    flex: 1;
+    margin-top: 60px; /* Space for the fixed navbar */
+}
+
+/* Navbar Logo */
 .navbar-logo {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-weight: bold;
+    color: #1f2937; /* Dark Slate Color for Logo */
 }
 
+/* Navbar Links */
 .navbar-links {
     display: flex;
     align-items: center;
 }
 
-.profile-dropdown {
+/* Notification and Profile Icons */
+.notification-icon,
+.profile-icon {
     position: relative;
+    margin-right: 1.5rem; /* Space between notification and profile */
+    cursor: pointer;
+    font-size: 1.6rem;
+    color: #1f2937; /* Dark Slate Color for Icons */
 }
 
-.profile-icon {
-    cursor: pointer;
-    font-size: 1.25rem;
-    margin-left: 1rem;
+/* Notification Badge */
+.notification-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: #ef4444; /* Red Badge Color */
+    color: #ffffff;
+    border-radius: 50%;
+    padding: 4px 8px;
+    font-size: 10px;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Profile Dropdown */
+.profile-dropdown {
+    position: relative;
 }
 
 .dropdown-menu {
     position: absolute;
     right: 0;
-    top: 100%;
-    background: #1f1f1f;
-    color: #fff;
+    top: 120%;
+    background: #ffffff; /* White Background for Dropdown */
+    color: #1f2937; /* Dark Slate Color for Text */
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    padding: 1rem 0;
-    min-width: 200px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    padding: 0.5rem 0;
+    min-width: 220px;
     z-index: 1000;
 }
 
 .dropdown-header {
-    padding: 8px 16px;
-    border-bottom: 1px solid #444;
-    margin-bottom: 8px;
-    font-size: 14px;
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid #e5e7eb;
+    margin-bottom: 0.5rem;
+    font-size: 16px;
     font-weight: 600;
+    color: #1f2937;
 }
 
 .dropdown-item {
     display: flex;
     align-items: center;
-    padding: 8px 16px;
-    color: #ddd;
+    padding: 0.75rem 1rem;
+    color: #1f2937; /* Dark Slate Color for Text */
     text-decoration: none;
-    font-size: 14px;
-    transition: background 0.2s;
+    font-size: 15px;
+    transition: background 0.3s, color 0.3s;
 }
 
 .dropdown-item:hover {
-    background: #2a2a2a;
+    background: #f3f4f6; /* Light Gray Background */
+    color: #1f2937;
 }
 
 .dropdown-item .fa {
     margin-right: 8px;
 }
 
+/* Logout Button */
 .btn-logout {
     display: flex;
     align-items: center;
-    background-color: #ff4d4d; /* Red color for logout button */
+    background-color: #ef4444; /* Red for Logout Button */
     color: white;
     border: none;
-    border-radius: 0;
-    padding: 8px 16px;
-    font-size: 14px;
+    border-radius: 5px;
+    padding: 0.75rem 1.5rem;
+    font-size: 16px;
     font-weight: 500;
     cursor: pointer;
     width: 100%;
@@ -93,87 +133,113 @@
 }
 
 .btn-logout:hover {
-    background-color: #ff1a1a; /* Darker red on hover */
-    transform: scale(1.05); /* Slight scale effect on hover */
+    background-color: #dc2626;
+    transform: scale(1.05);
 }
 
 .btn-logout:active {
-    background-color: #e60000; /* Even darker red when clicked */
+    background-color: #b91c1c;
 }
 
 .btn-logout .fa-sign-out-alt {
     margin-right: 8px;
 }
 
-.dashboard-content {
-    display: flex;
-    flex: 1;
-}
-
+/* Side Panel */
 .side-panel {
     width: 250px;
-    background: #222;
-    color: #fff;
-    padding: 1rem;
+    background-color:whitesmoke; /* White Background */
+    border-right: 1px solid #e5e7eb; /* Light Gray Border */
+    padding: 20px;
+    position: fixed; /* Fixed Position for Sidebar */
+    height: calc(100vh - 60px); /* Adjust height to viewport minus navbar height */
+    top: 60px; /* Align with the bottom of the navbar */
+    overflow-y: auto; /* Enable scrolling if sidebar content exceeds viewport height */
 }
 
 .side-panel-title {
     font-size: 1.25rem;
-    margin-bottom: 1rem;
+    margin-bottom: 20px;
+    color: #1f2937; /* Dark Slate Color for Text */
 }
 
-.side-panel-links a {
-    color: #fff;
-    text-decoration: none;
-    display: block;
-    margin-bottom: 0.5rem;
+/* Side Panel Links */
+.side-panel-links {
+    list-style: none;
+    padding: 0;
 }
 
+.side-panel-links li {
+    margin-bottom: 10px;
+}
+
+.side-panel-links button {
+    background: none;
+    border: none;
+    font-size: 1rem;
+    color: #1f2937; /* Dark Slate Color for Text */
+    cursor: pointer;
+    padding: 10px;
+    width: 100%;
+    text-align: left;
+    transition: background-color 0.2s ease;
+}
+
+.side-panel-links button:hover {
+    background-color: #f3f4f6; /* Light Gray Background */
+}
+
+/* Main Section */
 .main-section {
     flex: 1;
-    padding: 1rem;
-    background: #fff;
+    margin-left: 250px; /* Space for the fixed sidebar */
+    background: #f9fafb; /* Light Gray Background */
     overflow-y: auto;
 }
 
 .main-title {
-    font-size: 2rem;
+    font-size: 2.5rem;
     margin-bottom: 1rem;
+    color: #1f2937; /* Dark Slate for Title */
 }
 
 .main-content {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 1rem;
 }
 
+/* Widget */
 .widget {
-    background: #fafafa;
-    padding: 1rem;
-    border: 1px solid #ddd;
+    background: #ffffff; /* White Background */
+    padding: 1.5rem;
+    border: 1px solid #e5e7eb; /* Light Gray Border */
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .widget h2 {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     margin-bottom: 0.5rem;
+    color: #1f2937; /* Dark Slate for Heading */
 }
 
 .widget p {
     margin-bottom: 1rem;
+    color: #4b5563; /* Dark Gray for Text */
 }
 
 .widget button {
-    background: #007bff;
-    color: #fff;
+    background: #3b82f6; /* Blue Background */
+    color: #ffffff;
     border: none;
-    padding: 0.5rem 1rem;
+    padding: 0.75rem 1.5rem;
     border-radius: 8px;
     cursor: pointer;
+    font-size: 15px;
     transition: background 0.3s;
 }
 
 .widget button:hover {
-    background: #0056b3;
+    background: #2563eb;
 }
