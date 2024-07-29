@@ -96,7 +96,7 @@ const AdminLogin = () => {
               <FaEye className='icon' onClick={toggleShowPassword} />}
           </div>
           <div className='forgot'>
-            <a href="#">Forgot Password?</a>
+            <a href="#">Forgot Password ?</a>
           </div>
           <button type='submit'>Login</button>
           <div className='register-link'>
