@@ -1,55 +1,136 @@
 {
   "users": [
     {
+      "id": "1",
       "username": "asd",
       "email": "asd2@gmail.com",
       "password": "asd",
       "role": "user",
-      "id": 1
+      "joinedEvents": [
+        "0b58",
+        "00d2",
+        "0b58",
+        "0b58",
+        "0b58",
+        "00d2",
+        "4e9a",
+        "00d2",
+        "00d2",
+        "6b33",
+        "0b58",
+        "1c4f",
+        "0b58",
+        "0b58",
+        "0b58",
+        "0b58",
+        "0b58"
+      ]
     },
     {
+      "id": "2",
       "username": "asd",
       "email": "asdr@gmail.com",
       "password": "asd",
       "role": "admin",
-      "id": 2
+      "joinedEvents": []
     },
     {
+      "id": "3",
       "username": "asd2",
       "email": "asd@gmail.com",
       "password": "asd",
       "role": "admin",
-      "id": 3
+      "joinedEvents": []
     }
   ],
   "events": [
     {
-      "title": "asd",
-      "date": "2024-07-18",
-      "location": "sadsadas",
+      "id": "0b58",
+      "title": "Bed",
+      "date": "2024-07-03",
+      "location": "sad",
       "description": "asd",
-      "id": 1
+      "img": "https://i.pinimg.com/736x/e3/71/32/e37132a9e942ea43aee49a98ff257d49.jpg",
+      "startTime": "12:32",
+      "endTime": "12:32",
+      "category": "12sad",
+      "organizerName": "asd"
     },
     {
-      "title": "asd",
-      "date": "2024-07-08",
-      "location": "asd",
+      "id": "bee9",
+      "title": "Books",
+      "date": "2024-07-23",
+      "startTime": "04:03",
+      "location": "coimbatore",
       "description": "asd",
-      "id": 2
+      "category": "asd",
+      "organizerName": "sad",
+      "img": "https://i.pinimg.com/564x/2d/84/1d/2d841d58c070e9cf046406d04a1c0b5d.jpg"
     },
     {
-      "title": "aswin",
-      "date": "2024-07-24",
-      "location": "asdas",
-      "description": "asdas",
-      "id": 3
+      "id": "6b33",
+      "title": "Chairs",
+      "date": "0132-02-12",
+      "startTime": "12:01",
+      "location": "coimbatore",
+      "description": "asdasd",
+      "category": "sadas",
+      "organizerName": "sadasd",
+      "img": "https://i.pinimg.com/564x/03/b7/0c/03b70ca7d1ab64bf695dd6baa3d0065a.jpg"
     },
     {
-      "title": "harish",
-      "date": "2024-07-12",
-      "location": "asd",
-      "description": "sad",
-      "id": 4
+      "id": "4e9a",
+      "title": "Storage",
+      "date": "2024-07-10",
+      "startTime": "12:03",
+      "location": "coimbatore",
+      "description": "asdsa",
+      "category": "asd",
+      "organizerName": "sad",
+      "img": "https://i.pinimg.com/736x/8b/2f/81/8b2f81df53fe5a048b72bb642ef3ed65.jpg"
+    },
+    {
+      "id": "00d2",
+      "title": "Books",
+      "date": "2024-07-03",
+      "time": "12:12",
+      "location": "adsa",
+      "description": "asd",
+      "category": "asd",
+      "organizer": "sad",
+      "img": "https://i.pinimg.com/564x/2d/84/1d/2d841d58c070e9cf046406d04a1c0b5d.jpg"
+    },
+    {
+      "id": "1c4f",
+      "title": "Bed",
+      "date": "2024-07-03",
+      "time": "12:31",
+      "location": "sad",
+      "description": "asd",
+      "category": "dsa",
+      "organizer": "sad",
+      "img": "https://i.pinimg.com/736x/e3/71/32/e37132a9e942ea43aee49a98ff257d49.jpg"
+    }
+  ],
+  "feedback": [
+    {
+      "id": "1",
+      "userId": "1",
+      "feedback": "Great event, well organized!",
+      "rating": 5,
+      "timestamp": "2024-07-20T14:48:00.000Z"
+    },
+    {
+      "id": "2",
+      "userId": "2",
+      "feedback": "The venue was not up to the mark.",
+      "rating": 2,
+      "timestamp": "2024-07-21T10:22:00.000Z"
+    },
+    {
+      "id": "1ab3",
+      "feedback": "Yaska",
+      "rating": 2
     }
   ]
 }

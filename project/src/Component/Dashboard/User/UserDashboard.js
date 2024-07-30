@@ -8,11 +8,14 @@ import 'noty/lib/themes/mint.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faSignOutAlt, faCogs, faBell } from '@fortawesome/free-solid-svg-icons';
 import Overview from './Overview';
-import MyEvents from './MyEvents';
+import MyEvents from './AvailEvents';
 import UserManagement from '../Admin/UserManagement';
-import { Notifications } from '@mui/icons-material';
 import Reports from '../Admin/Reports';
 import Tickets from './Tickets';
+import EventPage from './Events';
+import Sponsors from './Sponsors';
+import FeedbackForm from './FeedbackForm';
+import Help from './Help';
 
 const UserDashboard = () => {
   const { logout, user } = useAuth();
@@ -49,7 +52,7 @@ const UserDashboard = () => {
 
 const Navbar = ({ user, dropdownOpen, setDropdownOpen, handleLogout }) => (
   <nav className="navbar">
-    <div className="navbar-logo">EventManager</div>
+    <div className="navbar-logo">Yaska User</div>
     <div className="navbar-links">
       <div className="notification-icon">
         <FontAwesomeIcon icon={faBell} />
@@ -98,10 +101,14 @@ const SidePanel = ({ setSelectedContent }) => (
     <h3 className="side-panel-title">Menu</h3>
     <ul className="side-panel-links">
       <li><button onClick={() => setSelectedContent('overview')}>Dashboard Overview</button></li>
-      <li><button onClick={() => setSelectedContent('events')}>My Events</button></li>
+      <li><button onClick={() => setSelectedContent('events')}>Avaliable Events</button></li>
+      <li><button onClick={() => setSelectedContent('mine')}>MyEvents</button></li>
       <li><button onClick={() => setSelectedContent('registrations')}>Registrations</button></li>
       <li><button onClick={() => setSelectedContent('tickets')}>Tickets</button></li>
+      <li><button onClick={() => setSelectedContent('Sponsors')}>Sponsers</button></li>
       <li><button onClick={() => setSelectedContent('help')}>Help</button></li>
+      <li><button onClick={() => setSelectedContent('reports')}>Reports</button></li>
+      <li><button onClick={() => setSelectedContent('feedback')}>FeedBack</button></li>
     </ul>
   </aside>
 );
@@ -111,9 +118,13 @@ const MainSection = ({ selectedContent }) => (
     <div className="main-content">
       {selectedContent === 'overview' && <Overview />}
       {selectedContent === 'events' && <MyEvents />}
+      {selectedContent === 'mine' && <EventPage />}
       {selectedContent === 'registrations' && <UserManagement />}
       {selectedContent === 'tickets' && <Tickets />}
-      {selectedContent === 'help' && <Reports />}
+      {selectedContent === 'Sponsors' && <Sponsors />}
+      {selectedContent === 'reports' && <Reports />}
+      {selectedContent === 'feedback' && <FeedbackForm/>}
+      {selectedContent === 'help' && <Help/>}
     </div>
   </main>
 );

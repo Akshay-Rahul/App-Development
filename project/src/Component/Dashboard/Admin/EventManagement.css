@@ -1,121 +1,121 @@
 .event-management-page {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  .header {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .event-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 20px;
-  }
-  
-  .event-form label {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-  }
-  
-  .event-form input, .event-form textarea {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .event-form button {
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-    background-color: #007bff;
-    color: white;
-    cursor: pointer;
-  }
-  
-  .event-form button[type="button"] {
-    background-color: #6c757d;
-  }
-  
-  .created-event {
-    background-color: #e9f5e9;
-    padding: 20px;
-    border: 1px solid #28a745;
-    border-radius: 4px;
-    margin-bottom: 20px;
-  }
-  
-  .search-filter {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-  }
-  
-  .event-list {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .event-item {
-    display: flex;
-    justify-content: space-between;
-    background-color: #f8f9fa;
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    margin-bottom: 10px;
-  }
-  
-  .event-details {
-    flex: 1;
-  }
-  
-  .event-actions {
-    display: flex;
-    gap: 10px;
-  }
-  
-  .event-actions button {
-    padding: 8px;
-    border: none;
-    border-radius: 4px;
-    background-color: #007bff;
-    color: white;
-    cursor: pointer;
-  }
-  
-  .event-actions button:nth-child(2) {
-    background-color: #dc3545;
-  }
-  
-  .confirmation-modal {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    z-index: 1000;
-  }
-  
-  .confirmation-modal button {
-    margin-right: 10px;
-  }
-  
-  .event-calendar {
-    margin-bottom: 20px;
-  }
-  
-  .event-details-section {
-    background-color: #f1f1f1;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-  }
-  
+  padding: 30px;
+  font-family: 'Arial', sans-serif;
+  background-color: #f5f5f5; /* Light background for better contrast */
+  color: #333; /* Dark text for better readability */
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  color: #2c3e50; /* Darker shade for a professional look */
+  margin: 0;
+}
+
+.image-gallery-container {
+  margin-bottom: 30px;
+}
+
+.image-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive grid */
+  gap: 20px;
+}
+
+.image-item {
+  border-radius: 15px; /* Rounded corners for a softer look */
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+.image-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+}
+
+.image-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-text {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 1rem; /* Slightly larger font */
+  font-weight: bold; /* Bold text for emphasis */
+}
+
+.booking-form {
+  background: #fff; /* White background for the form */
+  border-radius: 10px; /* Rounded corners */
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  max-width: 600px; /* Constrain the form width */
+  margin: 0 auto; /* Center align the form */
+}
+
+.booking-form h2 {
+  margin-bottom: 20px;
+  color: #2c3e50; /* Match header color */
+}
+
+.booking-form form div {
+  margin-bottom: 15px;
+}
+
+.booking-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.booking-form input,
+.booking-form textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.booking-form input[type="date"],
+.booking-form input[type="time"] {
+  padding: 10px; /* Adjust padding for date/time inputs */
+}
+
+.booking-form button {
+  background-color: #3498db; /* Blue button for primary action */
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.booking-form button:hover {
+  background-color: #2980b9; /* Darker blue on hover */
+  transform: scale(1.02); /* Slightly enlarge button on hover */
+}
+
+.booking-form button:last-child {
+  background-color: #e74c3c; /* Red button for secondary action */
+}
+
+.booking-form button:last-child:hover {
+  background-color: #c0392b; /* Darker red on hover */
+}

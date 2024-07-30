@@ -15,6 +15,7 @@ import Sponsors from './Sponsors';
 import SettingsPanel from './Settings';
 import TaskManagement from './Task';
 import VenueManagement from './Venue';
+import EventList from './EventList'; // Import EventList
 
 const AdminDashboard = () => {
   const { logout, user } = useAuth();
@@ -51,7 +52,7 @@ const AdminDashboard = () => {
 
 const Navbar = ({ user, dropdownOpen, setDropdownOpen, handleLogout }) => (
   <nav className="navbar">
-    <div className="navbar-logo">EventManager Admin</div>
+    <div className="navbar-logo">Yaska Admin</div>
     <div className="navbar-links">
       <div className="notification-icon">
         <FontAwesomeIcon icon={faBell} />
@@ -101,6 +102,7 @@ const SidePanel = ({ setActivePanel }) => (
     <ul className="side-panel-links">
       <li><button onClick={() => setActivePanel('overview')}>Overview</button></li>
       <li><button onClick={() => setActivePanel('events')}>Manage Events</button></li>
+      <li><button onClick={() => setActivePanel('eventList')}>Event List</button></li>
       <li><button onClick={() => setActivePanel('attendees')}>Attendees</button></li>
       <li><button onClick={() => setActivePanel('sponsors')}>Sponsors</button></li>
       <li><button onClick={() => setActivePanel('reports')}>Reports</button></li>
@@ -116,6 +118,7 @@ const MainSection = ({ activePanel }) => (
     <div className="main-content">
       {activePanel === 'overview' && <Overview />}
       {activePanel === 'events' && <EventManagement />}
+      {activePanel === 'eventList' && <EventList />}
       {activePanel === 'attendees' && <UserManagement />}
       {activePanel === 'sponsors' && <Sponsors />}
       {activePanel === 'reports' && <Reports />}

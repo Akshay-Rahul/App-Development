@@ -14,6 +14,7 @@ import Services from './Component/Home/Services';
 import AdminDashboard from './Component/Dashboard/Admin/AdminDashboard';
 import UserDashboard from './Component/Dashboard/User/UserDashboard';
 import Discover from './Component/Home/Discover';
+import Tickets from './Component/Dashboard/User/Tickets';
 
 // PrivateRoute component to handle role-based access
 const PrivateRoute = ({ element, allowedRoles }) => {
@@ -47,6 +48,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/service" element={<Services />} />
             <Route path="/discover" element={<Discover />} />
+            <Route path="/tickets" element={<Tickets />} />
             <Route 
               path="/admin-dashboard" 
               element={<PrivateRoute element={<AdminDashboard />} allowedRoles={['admin']} />} 

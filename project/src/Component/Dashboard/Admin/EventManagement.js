@@ -2,24 +2,78 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './EventManagement.css'; // Import CSS file
 
+const itemData = [
+  {
+    img: 'https://i.pinimg.com/736x/e3/71/32/e37132a9e942ea43aee49a98ff257d49.jpg',
+      title: 'Bed',
+      author: 'Exhibition and Experiential Spaces',
+    },
+    {
+      img: 'https://i.pinimg.com/564x/2d/84/1d/2d841d58c070e9cf046406d04a1c0b5d.jpg',
+      title: 'Books',
+      author: 'Govt. and Institutional',
+    },
+    {
+      img: 'https://i.pinimg.com/564x/8c/f5/c0/8cf5c06674084abbe5b73ba0ad0e6dc3.jpg',
+      title: 'Sink',
+      author: 'Virtual',
+    },
+    {
+      img: 'https://i.pinimg.com/564x/5b/10/00/5b1000f6819c94eaa6c15e799d19c948.jpg',
+      title: 'Kitchen',
+      author: 'CSR',
+    },
+    {
+      img: 'https://i.pinimg.com/564x/03/b7/0c/03b70ca7d1ab64bf695dd6baa3d0065a.jpg',
+      title: 'Chairs',
+      author: 'Awards & Launches',
+    },
+    {
+      img: 'https://i.pinimg.com/564x/10/be/c2/10bec23b295ff3d41113118b8dc594d7.jpg',
+      title: 'Laptop',
+      author: 'Musical Concerts',
+    },
+    {
+      img: 'https://i.pinimg.com/564x/3e/79/fc/3e79fc8ee970cd401841a35bd1875180.jpg',
+      title: 'Doors',
+      author: 'Media/Influencer Activation',
+    },
+    {
+      img: 'https://i.pinimg.com/564x/db/28/c2/db28c2b8a7b1f56db5e3a5936a14b959.jpg',
+      title: 'Blinds',
+      author: 'Summits & Conclaves',
+    },
+    {
+      img: 'https://i.pinimg.com/736x/8b/2f/81/8b2f81df53fe5a048b72bb642ef3ed65.jpg',
+      title: 'Storage',
+      author: 'Charity Fundraisers',
+    },
+    {
+      img: 'https://i.pinimg.com/564x/10/65/a7/1065a7a32cc18f565bc229a9fbd98637.jpg',
+      title: 'Coffee table',
+      author: 'Product Launches',
+    },
+];
+
 const EventManagement = () => {
   const [events, setEvents] = useState([]);
-  const [selectedEventId, setSelectedEventId] = useState(null);
-  const [isEditing, setIsEditing] = useState(false);
-  const [showConfirmDelete, setShowConfirmDelete] = useState(false);
+  const [isBooking, setIsBooking] = useState(false);
   const [formData, setFormData] = useState({
     title: '',
     date: '',
+    time: '',           // Added time field
     location: '',
-    description: ''
+    description: '',
+    category: '',       // Added category field
+    organizer: '',      // Added organizer field
+    img: ''             // Added image field
   });
-  const [createdEvent, setCreatedEvent] = useState(null);
+  const [selectedItem, setSelectedItem] = useState(null); // Added state for selected item
 
   useEffect(() => {
-    // Fetch events from the server
     const fetchEvents = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/events'); // JSON Server URL
+        const response = await axios.get('http://localhost:8080/events');
         setEvents(response.data);
       } catch (error) {
         console.error('Error fetching events:', error);
@@ -28,40 +82,6 @@ const EventManagement = () => {
 
     fetchEvents();
   }, []);
-
-  const createEvent = async (eventData) => {
-    try {
-      const response = await axios.post('http://localhost:8080/events', eventData); // JSON Server URL
-      setEvents([...events, response.data]);
-      setCreatedEvent(response.data);
-    } catch (error) {
-      console.error('Error creating event:', error);
-    }
-  };
-
-  const editEvent = async (eventId, updatedEventData) => {
-    try {
-      await axios.put(`http://localhost:8080/events/${eventId}`, updatedEventData); // JSON Server URL
-      setEvents(events.map(event =>
-        event.id === eventId ? { ...event, ...updatedEventData } : event
-      ));
-      setSelectedEventId(null);
-      setIsEditing(false);
-    } catch (error) {
-      console.error('Error updating event:', error);
-    }
-  };
-
-  const deleteEvent = async () => {
-    try {
-      await axios.delete(`http://localhost:8080/events/${selectedEventId}`); // JSON Server URL
-      setEvents(events.filter(event => event.id !== selectedEventId));
-      setSelectedEventId(null);
-      setShowConfirmDelete(false);
-    } catch (error) {
-      console.error('Error deleting event:', error);
-    }
-  };
 
   const handleFormChange = (e) => {
     const { name, value } = e.target;
@@ -73,120 +93,133 @@ const EventManagement = () => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    if (isEditing) {
-      editEvent(selectedEventId, formData);
-    } else {
-      createEvent(formData);
-    }
-    setFormData({
-      title: '',
-      date: '',
-      location: '',
-      description: ''
-    });
-    setIsEditing(false);
-    setSelectedEventId(null);
+    // Include image URL in the form data
+    const eventData = { ...formData, img: selectedItem.img };
+
+    axios.post('http://localhost:8080/events', eventData)
+      .then(() => {
+        setFormData({
+          title: '',
+          date: '',
+          time: '',         // Reset time field
+          location: '',
+          description: '',
+          category: '',     // Reset category field
+          organizer: '',    // Reset organizer field
+          img: ''
+        });
+        setIsBooking(false);
+      })
+      .catch(error => console.error('Error submitting event:', error));
   };
 
-  useEffect(() => {
-    if (selectedEventId) {
-      const event = events.find(event => event.id === selectedEventId);
-      setFormData({
-        title: event?.title || '',
-        date: event?.date || '',
-        location: event?.location || '',
-        description: event?.description || ''
-      });
-    }
-  }, [selectedEventId, events]);
-
-  const selectedEvent = events.find(event => event.id === selectedEventId);
+  const handleCardClick = (item) => {
+    setFormData({
+      title: item.title,
+      date: '',
+      time: '',         // Reset time field
+      location: '',
+      description: '',
+      category: '',     // Reset category field
+      organizer: '',    // Reset organizer field
+      img: item.img     // Add this line
+    });
+    setSelectedItem(item);  // Set selected item
+    setIsBooking(true);
+  };
 
   return (
     <div className="event-management-page">
       <header className="header">
         <h1>Event Management</h1>
-        <p>Create, Edit, or Delete events.</p>
       </header>
 
-      {/* Conditionally render form based on action */}
-      <form onSubmit={handleFormSubmit} className="event-form">
-        <label>
-          Title:
-          <input type="text" name="title" value={formData.title} onChange={handleFormChange} required />
-        </label>
-        <label>
-          Date:
-          <input type="date" name="date" value={formData.date} onChange={handleFormChange} required />
-        </label>
-        <label>
-          Location:
-          <input type="text" name="location" value={formData.location} onChange={handleFormChange} />
-        </label>
-        <label>
-          Description:
-          <textarea name="description" value={formData.description} onChange={handleFormChange}></textarea>
-        </label>
-        <button type="submit">{isEditing ? 'Update' : 'Create'} Event</button>
-        <button type="button" onClick={() => { setIsEditing(false); setSelectedEventId(null); }}>
-          Cancel
-        </button>
-      </form>
-
-      {createdEvent && (
-        <div className="created-event">
-          <h2>Newly Created Event</h2>
-          <p><strong>Title:</strong> {createdEvent.title}</p>
-          <p><strong>Date:</strong> {createdEvent.date}</p>
-          <p><strong>Location:</strong> {createdEvent.location}</p>
-          <p><strong>Description:</strong> {createdEvent.description}</p>
+      {isBooking ? (
+        <div className="booking-form">
+          <h2>Book Event: {formData.title}</h2>
+          <form onSubmit={handleFormSubmit}>
+            <div>
+              <label>Date:</label>
+              <input
+                type="date"
+                name="date"
+                value={formData.date}
+                onChange={handleFormChange}
+                required
+              />
+            </div>
+            <div>
+              <label>Time:</label>
+              <input
+                type="time"
+                name="time"
+                value={formData.time}
+                onChange={handleFormChange}
+                required
+              />
+            </div>
+            <div>
+              <label>Location:</label>
+              <input
+                type="text"
+                name="location"
+                value={formData.location}
+                onChange={handleFormChange}
+                required
+              />
+            </div>
+            <div>
+              <label>Description:</label>
+              <textarea
+                name="description"
+                value={formData.description}
+                onChange={handleFormChange}
+                required
+              />
+            </div>
+            <div>
+              <label>Category:</label>
+              <input
+                type="text"
+                name="category"
+                value={formData.category}
+                onChange={handleFormChange}
+                required
+              />
+            </div>
+            <div>
+              <label>Organizer:</label>
+              <input
+                type="text"
+                name="organizer"
+                value={formData.organizer}
+                onChange={handleFormChange}
+                required
+              />
+            </div>
+            <button type="submit">Submit Booking</button>
+            <button type="button" onClick={() => setIsBooking(false)}>Back to Events</button>
+          </form>
         </div>
-      )}
-
-      <button onClick={() => setIsEditing(true)} className="btn-create">Create Event</button>
-      
-      <ul className="event-list">
-        {events.length === 0 ? (
-          <li className="event-item">No events available.</li>
-        ) : (
-          events.map(event => (
-            <li key={event.id} className="event-item">
-              <div className="event-details">
-                <h3>{event.title}</h3>
-                <p><strong>Date:</strong> {event.date}</p>
-                <p><strong>Location:</strong> {event.location}</p>
-                <p><strong>Description:</strong> {event.description}</p>
+      ) : (
+        <div className="image-gallery-container">
+          <div className="image-gallery">
+            {itemData.map((item) => (
+              <div
+                key={item.img}
+                className="image-item"
+                onClick={() => handleCardClick(item)}
+              >
+                <img
+                  src={item.img}
+                  alt={item.title}
+                />
+                <div className="image-text">
+                  <span>{item.title}</span>
+                </div>
               </div>
-              <div className="event-actions">
-                <button onClick={() => { setSelectedEventId(event.id); setIsEditing(true); }}>
-                  Edit
-                </button>
-                <button onClick={() => { setSelectedEventId(event.id); setShowConfirmDelete(true); }}>
-                  Delete
-                </button>
-              </div>
-            </li>
-          ))
-        )}
-      </ul>
-
-      {/* Confirmation Modal */}
-      {showConfirmDelete && (
-        <div className="confirmation-modal">
-          <p>Are you sure you want to delete this event?</p>
-          <button onClick={deleteEvent}>Yes</button>
-          <button onClick={() => setShowConfirmDelete(false)}>No</button>
-        </div>
-      )}
-
-      {/* Event Details Section */}
-      {selectedEvent && (
-        <div className="event-details-section">
-          <h2>Event Details</h2>
-          <p><strong>Title:</strong> {selectedEvent.title}</p>
-          <p><strong>Date:</strong> {selectedEvent.date}</p>
-          <p><strong>Location:</strong> {selectedEvent.location}</p>
-          <p><strong>Description:</strong> {selectedEvent.description}</p>
+            ))}
+          </div>
         </div>
       )}
     </div>
