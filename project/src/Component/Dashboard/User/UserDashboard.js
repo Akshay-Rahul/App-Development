@@ -103,10 +103,9 @@ const SidePanel = ({ setSelectedContent }) => (
       <li><button onClick={() => setSelectedContent('overview')}>Dashboard Overview</button></li>
       <li><button onClick={() => setSelectedContent('events')}>Avaliable Events</button></li>
       <li><button onClick={() => setSelectedContent('mine')}>MyEvents</button></li>
-      <li><button onClick={() => setSelectedContent('registrations')}>Registrations</button></li>
-      <li><button onClick={() => setSelectedContent('tickets')}>Tickets</button></li>
+      {/* <li><button onClick={() => setSelectedContent('registrations')}>Registrations</button></li> */}
       <li><button onClick={() => setSelectedContent('Sponsors')}>Sponsers</button></li>
-      <li><button onClick={() => setSelectedContent('help')}>Help</button></li>
+      {/* <li><button onClick={() => setSelectedContent('help')}>Help</button></li> */}
       <li><button onClick={() => setSelectedContent('reports')}>Reports</button></li>
       <li><button onClick={() => setSelectedContent('feedback')}>FeedBack</button></li>
     </ul>

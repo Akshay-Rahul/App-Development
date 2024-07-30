@@ -5,6 +5,7 @@
     "@fortawesome/free-brands-svg-icons": "^6.6.0",
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "@fortawesome/react-fontawesome": "^0.2.2",
+    "@google/generative-ai": "^0.16.0",
     "@mui/icons-material": "^5.16.5",
     "@mui/material": "^5.16.5",
     "@tremor/react": "^3.17.4",

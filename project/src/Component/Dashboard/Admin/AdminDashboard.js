@@ -103,12 +103,12 @@ const SidePanel = ({ setActivePanel }) => (
       <li><button onClick={() => setActivePanel('overview')}>Overview</button></li>
       <li><button onClick={() => setActivePanel('events')}>Manage Events</button></li>
       <li><button onClick={() => setActivePanel('eventList')}>Event List</button></li>
-      <li><button onClick={() => setActivePanel('attendees')}>Attendees</button></li>
+      {/* <li><button onClick={() => setActivePanel('attendees')}>Attendees</button></li> */}
       <li><button onClick={() => setActivePanel('sponsors')}>Sponsors</button></li>
       <li><button onClick={() => setActivePanel('reports')}>Reports</button></li>
-      <li><button onClick={() => setActivePanel('settings')}>Settings</button></li>
-      <li><button onClick={() => setActivePanel('tasks')}>Tasks</button></li>
-      <li><button onClick={() => setActivePanel('venues')}>Venues</button></li>
+      {/* <li><button onClick={() => setActivePanel('settings')}>Settings</button></li> */}
+      {/* <li><button onClick={() => setActivePanel('tasks')}>Tasks</button></li>
+      <li><button onClick={() => setActivePanel('venues')}>Venues</button></li> */}
     </ul>
   </aside>
 );

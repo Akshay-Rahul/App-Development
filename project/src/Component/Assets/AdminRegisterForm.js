@@ -133,7 +133,7 @@ const AdminRegisterForm = () => {
           </div>
           <button type='submit' disabled={!termsAccepted}>Register</button>
           <div className='login-link'>
-            <p>Already have an account? <Link to="/login">Login</Link></p>
+            <p>Already have an account? <Link to="/admin-login">Login</Link></p>
           </div>
         </form>
       </div>

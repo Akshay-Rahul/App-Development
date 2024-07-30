@@ -86,7 +86,7 @@ const Tickets = () => {
                 name="nameOnCard"
                 value={paymentDetails.nameOnCard}
                 onChange={handleChange}
-                placeholder="John Doe"
+                placeholder="Name"
                 required
               />
             </label>

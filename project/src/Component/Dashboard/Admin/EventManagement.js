@@ -1,58 +1,61 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Noty from 'noty';
 import './EventManagement.css'; // Import CSS file
+import 'noty/lib/noty.css'; // Import Noty CSS
+import 'noty/lib/themes/mint.css'; // Import Noty theme
 
 const itemData = [
   {
     img: 'https://i.pinimg.com/736x/e3/71/32/e37132a9e942ea43aee49a98ff257d49.jpg',
-      title: 'Bed',
-      author: 'Exhibition and Experiential Spaces',
-    },
-    {
-      img: 'https://i.pinimg.com/564x/2d/84/1d/2d841d58c070e9cf046406d04a1c0b5d.jpg',
-      title: 'Books',
-      author: 'Govt. and Institutional',
-    },
-    {
-      img: 'https://i.pinimg.com/564x/8c/f5/c0/8cf5c06674084abbe5b73ba0ad0e6dc3.jpg',
-      title: 'Sink',
-      author: 'Virtual',
-    },
-    {
-      img: 'https://i.pinimg.com/564x/5b/10/00/5b1000f6819c94eaa6c15e799d19c948.jpg',
-      title: 'Kitchen',
-      author: 'CSR',
-    },
-    {
-      img: 'https://i.pinimg.com/564x/03/b7/0c/03b70ca7d1ab64bf695dd6baa3d0065a.jpg',
-      title: 'Chairs',
-      author: 'Awards & Launches',
-    },
-    {
-      img: 'https://i.pinimg.com/564x/10/be/c2/10bec23b295ff3d41113118b8dc594d7.jpg',
-      title: 'Laptop',
-      author: 'Musical Concerts',
-    },
-    {
-      img: 'https://i.pinimg.com/564x/3e/79/fc/3e79fc8ee970cd401841a35bd1875180.jpg',
-      title: 'Doors',
-      author: 'Media/Influencer Activation',
-    },
-    {
-      img: 'https://i.pinimg.com/564x/db/28/c2/db28c2b8a7b1f56db5e3a5936a14b959.jpg',
-      title: 'Blinds',
-      author: 'Summits & Conclaves',
-    },
-    {
-      img: 'https://i.pinimg.com/736x/8b/2f/81/8b2f81df53fe5a048b72bb642ef3ed65.jpg',
-      title: 'Storage',
-      author: 'Charity Fundraisers',
-    },
-    {
-      img: 'https://i.pinimg.com/564x/10/65/a7/1065a7a32cc18f565bc229a9fbd98637.jpg',
-      title: 'Coffee table',
-      author: 'Product Launches',
-    },
+    title: 'Bed',
+    author: 'Exhibition and Experiential Spaces',
+  },
+  {
+    img: 'https://i.pinimg.com/564x/2d/84/1d/2d841d58c070e9cf046406d04a1c0b5d.jpg',
+    title: 'Books',
+    author: 'Govt. and Institutional',
+  },
+  {
+    img: 'https://i.pinimg.com/564x/8c/f5/c0/8cf5c06674084abbe5b73ba0ad0e6dc3.jpg',
+    title: 'Sink',
+    author: 'Virtual',
+  },
+  {
+    img: 'https://i.pinimg.com/564x/5b/10/00/5b1000f6819c94eaa6c15e799d19c948.jpg',
+    title: 'Kitchen',
+    author: 'CSR',
+  },
+  {
+    img: 'https://i.pinimg.com/564x/03/b7/0c/03b70ca7d1ab64bf695dd6baa3d0065a.jpg',
+    title: 'Chairs',
+    author: 'Awards & Launches',
+  },
+  {
+    img: 'https://i.pinimg.com/564x/10/be/c2/10bec23b295ff3d41113118b8dc594d7.jpg',
+    title: 'Laptop',
+    author: 'Musical Concerts',
+  },
+  {
+    img: 'https://i.pinimg.com/564x/3e/79/fc/3e79fc8ee970cd401841a35bd1875180.jpg',
+    title: 'Doors',
+    author: 'Media/Influencer Activation',
+  },
+  {
+    img: 'https://i.pinimg.com/564x/db/28/c2/db28c2b8a7b1f56db5e3a5936a14b959.jpg',
+    title: 'Blinds',
+    author: 'Summits & Conclaves',
+  },
+  {
+    img: 'https://i.pinimg.com/736x/8b/2f/81/8b2f81df53fe5a048b72bb642ef3ed65.jpg',
+    title: 'Storage',
+    author: 'Charity Fundraisers',
+  },
+  {
+    img: 'https://i.pinimg.com/564x/10/65/a7/1065a7a32cc18f565bc229a9fbd98637.jpg',
+    title: 'Coffee table',
+    author: 'Product Launches',
+  },
 ];
 
 const EventManagement = () => {
@@ -109,6 +112,12 @@ const EventManagement = () => {
           img: ''
         });
         setIsBooking(false);
+        new Noty({
+          type: 'success',
+          layout: 'topRight',
+          text: 'Event created successfully!',
+          timeout: 3000
+        }).show();
       })
       .catch(error => console.error('Error submitting event:', error));
   };

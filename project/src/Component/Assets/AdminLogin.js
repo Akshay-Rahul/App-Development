@@ -95,9 +95,6 @@ const AdminLogin = () => {
               <FaEyeSlash className='icon' onClick={toggleShowPassword} /> : 
               <FaEye className='icon' onClick={toggleShowPassword} />}
           </div>
-          <div className='forgot'>
-            <a href="#">Forgot Password ?</a>
-          </div>
           <button type='submit'>Login</button>
           <div className='register-link'>
             <p>Don't have an account? <Link to="/admin-register">Register</Link></p>
