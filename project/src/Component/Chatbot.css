@@ -1,0 +1,29 @@
+/* Chatbot.css */
+.chatbot-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: lightgrey;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .chatbot-header {
+    background-color: black;
+    color: white;
+    font-size: 20px;
+    padding: 10px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+  
+  .chatbot-bot-message {
+    background-color: grey;
+    color: white;
+  }
+  
+  .chatbot-user-message {
+    background-color: grey;
+    color: white;
+  }
+  

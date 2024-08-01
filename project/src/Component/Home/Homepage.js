@@ -11,7 +11,6 @@ import { FaLinkedin, FaInstagram, FaTwitter, FaFacebook } from 'react-icons/fa';
 import About from './About';
 import Discover from './Discover';
 import Services from './Services';
-import Chatbot from './Chatbot';
 
 const Homepage = () => {
   const { user } = useAuth();
@@ -46,7 +45,6 @@ const Homepage = () => {
       <About />
       <Discover />
       <Services />
-      <Chatbot/>
 
       <footer className="footer">
         <div className="footer-links">

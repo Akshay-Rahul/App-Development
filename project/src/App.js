@@ -15,6 +15,7 @@ import AdminDashboard from './Component/Dashboard/Admin/AdminDashboard';
 import UserDashboard from './Component/Dashboard/User/UserDashboard';
 import Discover from './Component/Home/Discover';
 import Tickets from './Component/Dashboard/User/Tickets';
+import Chatbot from './Component/Chat';
 
 // PrivateRoute component to handle role-based access
 const PrivateRoute = ({ element, allowedRoles }) => {
@@ -36,6 +37,7 @@ const PrivateRoute = ({ element, allowedRoles }) => {
 function App() {
   return (
     <AuthProvider>
+      <Chatbot/>
       <CssBaseline/>
       <BrowserRouter>
         <div className="app-container">
