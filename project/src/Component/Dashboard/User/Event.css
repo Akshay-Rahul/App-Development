@@ -4,7 +4,6 @@
 .event-page {
         display: flex;
         flex-direction: column;
-        width: 84vw; /* Set width to 75% of the viewport width */
         height: 100vh; /* Full viewport height */
         padding: 20px;
         background-color: #f4f4f4;
