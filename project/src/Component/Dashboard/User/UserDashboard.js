@@ -1,131 +1,135 @@
-import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import './UserDashboard.css';
-import { useAuth } from '../../Assets/AuthContext';
-import Noty from 'noty';
-import 'noty/lib/noty.css';
-import 'noty/lib/themes/mint.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faSignOutAlt, faCogs, faBell } from '@fortawesome/free-solid-svg-icons';
-import Overview from './Overview';
-import MyEvents from './AvailEvents';
-import UserManagement from '../Admin/UserManagement';
-import Reports from '../Admin/Reports';
-import Tickets from './Tickets';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { CSSTransition } from 'react-transition-group';
+import {
+  FaTachometerAlt, FaCalendarAlt, FaUsers, FaChartBar, FaBuilding, FaBell, FaCog, FaDollarSign, FaRegHandshake
+} from 'react-icons/fa';
+import { VscFeedback } from "react-icons/vsc";
+import { MdEvent } from "react-icons/md";
+import { MdEventAvailable } from "react-icons/md";
+import './UserDashboard.css'; // Ensure this path is correct
+
+import { useAuth } from '../../Homepage/AuthContext';
+import Navbar2 from './Navbar2';
+import Home from '../Admin/Home';
+import UserOverview from './UserOverview';
+import UserScheduler from './UserScheduler';
 import EventPage from './Events';
-import Sponsors from './Sponsors';
+import MyEvents from './AvailEvents';
+import Reports from './Reports';
 import FeedbackForm from './FeedbackForm';
-import Help from './Help';
 
 const UserDashboard = () => {
-  const { logout, user } = useAuth();
   const navigate = useNavigate();
+  const { user, logout } = useAuth();
+  const [activeView, setActiveView] = useState('dashboard');
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [selectedContent, setSelectedContent] = useState('overview'); // Default to 'overview'
 
   const handleLogout = () => {
     logout();
-    new Noty({
-      type: 'success',
-      layout: 'topRight',
-      text: 'Logout successful!',
-      timeout: 3000,
-    }).show();
+    navigate('/login');
+  };
+
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
+
+  const closeDropdown = () => {
+    setDropdownOpen(false);
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (!event.target.closest('.user-account-icon')) {
+        closeDropdown();
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
+
+  const handleLogoClick = () => {
     navigate('/');
   };
 
+  const renderContent = () => {
+    switch (activeView) {
+      case 'dashboard':
+        return <UserOverview />;
+      case 'events':
+        return <MyEvents />;
+        case 'myevents':
+        return <EventPage />;
+      case 'calendar':
+        return <UserScheduler />;
+      case 'attendees':
+        return <Home />;
+      case 'reports':
+        return <Reports />;
+      case 'venues':
+        return <Home />;
+      case 'sponsors':
+        return <Home />;
+      case 'feedback':
+        return <FeedbackForm />;
+      default:
+        return <Home />;
+    }
+  };
+
   return (
-    <div className="dashboard-container">
-      <Navbar
-        user={user}
-        dropdownOpen={dropdownOpen}
-        setDropdownOpen={setDropdownOpen}
-        handleLogout={handleLogout}
-      />
-      <div className="dashboard-content">
-        <SidePanel setSelectedContent={setSelectedContent} />
-        <MainSection selectedContent={selectedContent} />
+    <div className="user-dashboard-container">
+      <Navbar2 />
+      <aside className="user-side-panel-container">
+        <div className="user-side-panel-header">
+          <div className="user-navbar-logo">
+            User
+          </div>
+        </div>
+        <ul className="user-side-panel-links">
+          {[
+            { key: 'dashboard', icon: <FaTachometerAlt />, text: 'Dashboard' },
+            { key: 'events', icon: <MdEvent />, text: 'Events' },
+            { key: 'myevents', icon: <MdEventAvailable />, text: 'My Events' },
+            { key: 'calendar', icon: <FaCalendarAlt />, text: 'Calendar' },
+            { key: 'attendees', icon: <FaUsers />, text: 'Attendees' },
+            { key: 'reports', icon: <FaChartBar />, text: 'Reports' },
+            { key: 'venues', icon: <FaBuilding />, text: 'Venues' },
+            { key: 'sponsors', icon: <FaRegHandshake />, text: 'Sponsors' },
+            { key: 'feedback', icon: <VscFeedback />, text: 'Feedback' },
+      
+          ].map(({ key, icon, text }) => (
+            <li key={key}>
+              <button
+                className={`user-side-panel-link ${activeView === key ? 'active' : ''}`}
+                onClick={() => setActiveView(key)}
+              >
+                <div className={`user-side-panel-icon ${activeView === key ? 'active' : ''}`}>
+                  {icon}
+                </div>
+                <span className="user-side-panel-text">{text}</span>
+              </button>
+            </li>
+          ))}
+        </ul>
+      </aside>
+      <div className="user-dashboard-content">
+        <main className="user-main-section">
+          <CSSTransition
+            in={true}
+            timeout={300}
+            classNames="fade"
+            unmountOnExit
+          >
+            {renderContent()}
+          </CSSTransition>
+        </main>
       </div>
     </div>
   );
 };
-
-const Navbar = ({ user, dropdownOpen, setDropdownOpen, handleLogout }) => (
-  <nav className="navbar">
-    <div className="navbar-logo">Yaska User</div>
-    <div className="navbar-links">
-      <div className="notification-icon">
-        <FontAwesomeIcon icon={faBell} />
-        <span className="notification-badge">3</span> {/* Replace 3 with actual notification count */}
-      </div>
-      <ProfileDropdown
-        user={user}
-        dropdownOpen={dropdownOpen}
-        setDropdownOpen={setDropdownOpen}
-        handleLogout={handleLogout}
-      />
-    </div>
-  </nav>
-);
-
-const ProfileDropdown = ({ user, dropdownOpen, setDropdownOpen, handleLogout }) => (
-  <div className="profile-dropdown">
-    <div
-      className="profile-icon"
-      onClick={() => setDropdownOpen(!dropdownOpen)}
-      aria-haspopup="true"
-      aria-expanded={dropdownOpen}
-    >
-      <FontAwesomeIcon icon={faUser} />
-    </div>
-    {dropdownOpen && (
-      <div className="dropdown-menu">
-        <div className="dropdown-header">
-          <span className="user-name">
-            Hello, {user?.username || 'User'}
-          </span>
-        </div>
-        <Link to="/settings" className="dropdown-item">
-          <FontAwesomeIcon icon={faCogs} /> Settings
-        </Link>
-        <button className="btn-logout" onClick={handleLogout}>
-          <FontAwesomeIcon icon={faSignOutAlt} /> Log Out
-        </button>
-      </div>
-    )}
-  </div>
-);
-
-const SidePanel = ({ setSelectedContent }) => (
-  <aside className="side-panel">
-    <h3 className="side-panel-title">Menu</h3>
-    <ul className="side-panel-links">
-      <li><button onClick={() => setSelectedContent('overview')}>Dashboard Overview</button></li>
-      <li><button onClick={() => setSelectedContent('events')}>Avaliable Events</button></li>
-      <li><button onClick={() => setSelectedContent('mine')}>MyEvents</button></li>
-      {/* <li><button onClick={() => setSelectedContent('registrations')}>Registrations</button></li> */}
-      <li><button onClick={() => setSelectedContent('Sponsors')}>Sponsers</button></li>
-      {/* <li><button onClick={() => setSelectedContent('help')}>Help</button></li> */}
-      <li><button onClick={() => setSelectedContent('reports')}>Reports</button></li>
-      <li><button onClick={() => setSelectedContent('feedback')}>FeedBack</button></li>
-    </ul>
-  </aside>
-);
-
-const MainSection = ({ selectedContent }) => (
-  <main className="main-section">
-    <div className="main-content">
-      {selectedContent === 'overview' && <Overview />}
-      {selectedContent === 'events' && <MyEvents />}
-      {selectedContent === 'mine' && <EventPage />}
-      {selectedContent === 'registrations' && <UserManagement />}
-      {selectedContent === 'tickets' && <Tickets />}
-      {selectedContent === 'Sponsors' && <Sponsors />}
-      {selectedContent === 'reports' && <Reports />}
-      {selectedContent === 'feedback' && <FeedbackForm/>}
-      {selectedContent === 'help' && <Help/>}
-    </div>
-  </main>
-);
 
 export default UserDashboard;

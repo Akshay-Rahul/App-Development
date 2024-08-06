@@ -6,58 +6,65 @@ import './Event.css';
 const EventPage = () => {
   const location = useLocation();
   const [user, setUser] = useState(null);
-  const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
 
   // Simulated user data, replace with actual fetch
   const userId = "1"; // Replace with actual user ID from your auth system
 
   useEffect(() => {
-    const fetchUserAndEvents = async () => {
+    const fetchUser = async () => {
       try {
         // Fetch user data
         const userResponse = await axios.get(`http://localhost:8080/users/${userId}`);
         const userData = userResponse.data;
         setUser(userData);
-
-        // Fetch all events
-        const eventsResponse = await axios.get('http://localhost:8080/events');
-        const allEvents = eventsResponse.data;
-
-        // Filter events that user has joined
-        const joinedEvents = allEvents.filter(event => userData.joinedEvents.includes(event.id));
-        setEvents(joinedEvents);
-
-        setLoading(false);
       } catch (error) {
-        console.error('Error fetching user or events:', error);
+        console.error('Error fetching user data:', error);
+      } finally {
         setLoading(false);
       }
     };
 
-    fetchUserAndEvents();
+    fetchUser();
   }, [userId]);
 
   if (loading) {
     return <div>Loading...</div>;
   }
 
+  if (!user) {
+    return <div>Error loading user data.</div>;
+  }
+
   return (
     <div className="event-page">
       <h2>Joined Events</h2>
-      {events.length > 0 ? (
+      {user.joinedEvents && user.joinedEvents.length > 0 ? (
         <div className="event-list">
-          {events.map(event => (
+          {user.joinedEvents.map((event) => (
             <div key={event.id} className="event-item">
-              <img src={event.img || 'https://via.placeholder.com/200'} alt={event.title} className="event-image" />
+              <img
+                src={event.eventImage || 'https://via.placeholder.com/200'}
+                alt={event.eventName}
+                className="event-image"
+              />
               <div className="event-details">
-                <h3>{event.title}</h3>
-                <p><strong>Date:</strong> {event.date}</p>
-                <p><strong>Time:</strong> {event.startTime} - {event.endTime}</p>
-                <p><strong>Location:</strong> {event.location}</p>
-                <p><strong>Description:</strong> {event.description}</p>
-                <p><strong>Category:</strong> {event.category}</p>
-                <p><strong>Organizer:</strong> {event.organizerName}</p>
+                <h3>{event.eventName}</h3>
+                <p>
+                  <strong>Date:</strong> {event.eventDate}
+                </p>
+                <p>
+                  <strong>Location:</strong> {event.eventLocation}
+                </p>
+                <p>
+                  <strong>Description:</strong> {event.eventDescription}
+                </p>
+                <p>
+                  <strong>Category:</strong> {event.eventCategory}
+                </p>
+                <p>
+                  <strong>Organizer:</strong> {event.eventOrganizer || 'Unknown'}
+                </p>
               </div>
             </div>
           ))}

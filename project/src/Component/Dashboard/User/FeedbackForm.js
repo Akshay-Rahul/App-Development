@@ -24,7 +24,7 @@ const FeedbackForm = () => {
       new Noty({
         type: 'success',
         layout: 'topRight',
-        text: 'Thank you for your feedback!',
+        text: ' Thank you for your feedback!',
         timeout: 3000,
       }).show();
       setFeedback('');
@@ -33,7 +33,7 @@ const FeedbackForm = () => {
       new Noty({
         type: 'error',
         layout: 'topRight',
-        text: 'Failed to submit feedback!',
+        text: 'Failed to submit feedback! Please try again.',
         timeout: 3000,
       }).show();
     }
@@ -53,7 +53,7 @@ const FeedbackForm = () => {
 
   return (
     <div className="feedback-form-container">
-      <h2 className="feedback-form-title">We value your feedback</h2>
+      <h2 className="feedback-form-title"> We Value Your Feedback! </h2>
       <form onSubmit={handleSubmit} className="feedback-form">
         <div className="form-group">
           <label htmlFor="rating">Rating:</label>
@@ -73,17 +73,17 @@ const FeedbackForm = () => {
           </div>
         </div>
         <div className="form-group">
-          <label htmlFor="feedback">Feedback:</label>
+          <label htmlFor="feedback">Your Feedback:</label>
           <textarea
             id="feedback"
             value={feedback}
             onChange={(e) => setFeedback(e.target.value)}
             className="form-control"
-            placeholder="Write your feedback here..."
+            placeholder="Share your thoughts here..."
             rows="5"
           />
         </div>
-        <button type="submit" className="btn-submit">Submit</button>
+        <button type="submit" className="btn-submit">Submit Feedback </button>
       </form>
     </div>
   );

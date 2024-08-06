@@ -24,10 +24,6 @@ const MyEvents = () => {
     navigate('/tickets', { state: { event } });
   };
 
-  if (!events || events.length === 0) {
-    return <div>Loading...</div>;
-  }
-
   return (
     <div className="event-list-page">
       <h2>Event List</h2>

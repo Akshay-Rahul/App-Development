@@ -1,134 +1,136 @@
-import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import './AdminDashboard.css';
-import { useAuth } from '../../Assets/AuthContext';
-import Noty from 'noty';
-import 'noty/lib/noty.css';
-import 'noty/lib/themes/mint.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faSignOutAlt, faCogs, faBell } from '@fortawesome/free-solid-svg-icons';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { CSSTransition } from 'react-transition-group';
+import {
+  FaTachometerAlt, FaCalendarAlt, FaUsers, FaChartBar, FaBuilding, FaDollarSign, FaRegHandshake
+} from 'react-icons/fa';
+import { VscFeedback } from "react-icons/vsc";
+import { MdEvent } from "react-icons/md";
+import { MdEventAvailable } from "react-icons/md";
+import './AdminDashboard.css'; // Ensure this path is correct
+
+import { useAuth } from '../../Homepage/AuthContext';
+import Navbar2 from './Navbar2';
+import AdminOverview from './AdminOverview';
+import Home from './Home';
+import Scheduler from './AdminScheduler';
 import EventManagement from './EventManagement';
-import UserManagement from './UserManagement';
+import EventList from './EventList';
 import Reports from './Reports';
-import Overview from './Overview';
-import Sponsors from './Sponsors';
-import SettingsPanel from './Settings';
-import TaskManagement from './Task';
-import VenueManagement from './Venue';
-import EventList from './EventList'; // Import EventList
 
 const AdminDashboard = () => {
-  const { logout, user } = useAuth();
   const navigate = useNavigate();
+  const { user, logout } = useAuth();
+  const [activeView, setActiveView] = useState('dashboard');
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [activePanel, setActivePanel] = useState('overview');
 
   const handleLogout = () => {
     logout();
-    new Noty({
-      type: 'success',
-      layout: 'topRight',
-      text: 'Logout successful!',
-      timeout: 3000,
-    }).show();
+    navigate('/login');
+  };
+
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
+
+  const closeDropdown = () => {
+    setDropdownOpen(false);
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (!event.target.closest('.admin-account-icon')) {
+        closeDropdown();
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
+
+  const handleLogoClick = () => {
     navigate('/');
   };
 
+  const renderContent = () => {
+    switch (activeView) {
+      case 'dashboard':
+        return <AdminOverview />;
+        case 'event-management':
+          return <EventManagement />;
+        case 'events':
+          return <EventList />;
+        case 'calendar':
+          return <Scheduler />;
+        case 'attendees':
+          return <Home />;
+        case 'reports':
+          return <Reports />;
+        case 'venues':
+          return <Home />;
+        case 'payments':
+          return <Home />;
+        case 'sponsors':
+          return <Home />;
+        case 'feedback':
+          return <Home />;
+        default:
+          return <Home />;
+    }
+  };
+
   return (
-    <div className="dashboard-container">
-      <Navbar
-        user={user}
-        dropdownOpen={dropdownOpen}
-        setDropdownOpen={setDropdownOpen}
-        handleLogout={handleLogout}
-      />
-      <div className="dashboard-content">
-        <SidePanel setActivePanel={setActivePanel} />
-        <MainSection activePanel={activePanel} />
+    <div className="admin-dashboard-container">
+      <Navbar2 />
+      <aside className="admin-side-panel-container">
+        <div className="admin-side-panel-header">
+          <div className="admin-navbar-logo">
+            Admin
+          </div>
+        </div>
+        <ul className="admin-side-panel-links">
+          {[
+             { key: 'dashboard', icon: <FaTachometerAlt />, text: 'Dashboard' },
+             { key: 'event-management', icon: <MdEventAvailable />, text: 'Event Management' },
+             { key: 'events', icon: <MdEvent />, text: 'Events' },
+             { key: 'calendar', icon: <FaCalendarAlt />, text: 'Calendar' },
+             { key: 'attendees', icon: <FaUsers />, text: 'Attendees' },
+             { key: 'reports', icon: <FaChartBar />, text: 'Reports' },
+             { key: 'venues', icon: <FaBuilding />, text: 'Venues' },
+             { key: 'payments', icon: <FaDollarSign />, text: 'Payments' },
+             { key: 'sponsors', icon: <FaRegHandshake />, text: 'Sponsors' },
+             { key: 'feedback', icon: <VscFeedback />, text: 'Feedback' },
+          ].map(({ key, icon, text }) => (
+            <li key={key}>
+              <button
+                className={`admin-side-panel-link ${activeView === key ? 'active' : ''}`}
+                onClick={() => setActiveView(key)}
+              >
+                <div className={`admin-side-panel-icon ${activeView === key ? 'active' : ''}`}>
+                  {icon}
+                </div>
+                <span className="admin-side-panel-text">{text}</span>
+              </button>
+            </li>
+          ))}
+        </ul>
+      </aside>
+      <div className="admin-dashboard-content">
+        <main className="admin-main-section">
+          <CSSTransition
+            in={true}
+            timeout={300}
+            classNames="fade"
+            unmountOnExit
+          >
+            {renderContent()}
+          </CSSTransition>
+        </main>
       </div>
     </div>
   );
 };
-
-const Navbar = ({ user, dropdownOpen, setDropdownOpen, handleLogout }) => (
-  <nav className="navbar">
-    <div className="navbar-logo">Yaska Admin</div>
-    <div className="navbar-links">
-      <div className="notification-icon">
-        <FontAwesomeIcon icon={faBell} />
-        <span className="notification-badge">3</span>
-      </div>
-      <ProfileDropdown
-        user={user}
-        dropdownOpen={dropdownOpen}
-        setDropdownOpen={setDropdownOpen}
-        handleLogout={handleLogout}
-      />
-    </div>
-  </nav>
-);
-
-const ProfileDropdown = ({ user, dropdownOpen, setDropdownOpen, handleLogout }) => (
-  <div className="profile-dropdown">
-    <div
-      className="profile-icon"
-      onClick={() => setDropdownOpen(!dropdownOpen)}
-      aria-haspopup="true"
-      aria-expanded={dropdownOpen}
-    >
-      <FontAwesomeIcon icon={faUser} />
-    </div>
-    {dropdownOpen && (
-      <div className="dropdown-menu">
-        <div className="dropdown-header">
-          <span className="user-name">
-            Hello, {user?.username ? user.username : 'Unknown User'}
-          </span>
-        </div>
-        <Link to="/settings" className="dropdown-item">
-          <FontAwesomeIcon icon={faCogs} /> Settings
-        </Link>
-        <button className="btn-logout" onClick={handleLogout}>
-          <FontAwesomeIcon icon={faSignOutAlt} /> Log Out
-        </button>
-      </div>
-    )}
-  </div>
-);
-
-const SidePanel = ({ setActivePanel }) => (
-  <aside className="side-panel">
-    <h3 className="side-panel-title">Menu</h3>
-    <ul className="side-panel-links">
-      <li><button onClick={() => setActivePanel('overview')}>Overview</button></li>
-      <li><button onClick={() => setActivePanel('events')}>Manage Events</button></li>
-      <li><button onClick={() => setActivePanel('eventList')}>Event List</button></li>
-      {/* <li><button onClick={() => setActivePanel('attendees')}>Attendees</button></li> */}
-      <li><button onClick={() => setActivePanel('sponsors')}>Sponsors</button></li>
-      <li><button onClick={() => setActivePanel('reports')}>Reports</button></li>
-      {/* <li><button onClick={() => setActivePanel('settings')}>Settings</button></li> */}
-      {/* <li><button onClick={() => setActivePanel('tasks')}>Tasks</button></li>
-      <li><button onClick={() => setActivePanel('venues')}>Venues</button></li> */}
-    </ul>
-  </aside>
-);
-
-const MainSection = ({ activePanel }) => (
-  <main className="main-section">
-    <div className="main-content">
-      {activePanel === 'overview' && <Overview />}
-      {activePanel === 'events' && <EventManagement />}
-      {activePanel === 'eventList' && <EventList />}
-      {activePanel === 'attendees' && <UserManagement />}
-      {activePanel === 'sponsors' && <Sponsors />}
-      {activePanel === 'reports' && <Reports />}
-      {activePanel === 'settings' && <SettingsPanel activeSection="general" />}
-      {activePanel === 'emailTemplates' && <SettingsPanel activeSection="emailTemplates" />}
-      {activePanel === 'permissionsRoles' && <SettingsPanel activeSection="permissionsRoles" />}
-      {activePanel === 'tasks' && <TaskManagement />}
-      {activePanel === 'venues' && <VenueManagement />}
-    </div>
-  </main>
-);
 
 export default AdminDashboard;

@@ -1,245 +1,157 @@
-/* Dashboard Container */
-.dashboard-container {
-    font-family: 'Poppins', sans-serif;
+/* user Dashboard Container */
+.user-dashboard-container {
     display: flex;
     flex-direction: column;
     height: 100vh;
-    background: #f9fafb; /* Light Gray Background */
-}
-
-/* Navbar */
-.navbar {
+    overflow: hidden;
+  }
+  
+  /* user Navbar */
+  .user-navbar {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    background: #ffffff; /* White Background for Navbar */
-    color: #1f2937; /* Dark Slate Color for Text */
-    padding: 1rem 2rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-bottom: 1px solid #e5e7eb; /* Light Gray Border */
-    position: fixed; /* Fixed Position */
-    top: 0;
-    left: 0;
-    right: 0;
+    background-color: #34495e;
+    color: #ecf0f1;
+    height: 100vh; /* Set a specific height */
+    padding: 1rem; /* Adjust padding to fit within the new height */
+    border-bottom: 1px solid #1abc9c;
     z-index: 1000;
-    height: 60px; /* Adjust to the height of your navbar */
-}
-
-/* Adjust Content Area for Fixed Navbar */
-.dashboard-content {
-    display: flex;
-    flex: 1;
-    margin-top: 60px; /* Space for the fixed navbar */
-}
-
-/* Navbar Logo */
-.navbar-logo {
+  }
+  
+  /* user Navbar Logo */
+  .user-navbar-logo {
     font-size: 1.8rem;
     font-weight: bold;
-    color: #1f2937; /* Dark Slate Color for Logo */
-}
-
-/* Navbar Links */
-.navbar-links {
-    display: flex;
-    align-items: center;
-}
-
-/* Notification and Profile Icons */
-.notification-icon,
-.profile-icon {
-    position: relative;
-    margin-right: 1.5rem; /* Space between notification and profile */
     cursor: pointer;
-    font-size: 1.6rem;
-    color: #1f2937; /* Dark Slate Color for Icons */
-}
-
-/* Notification Badge */
-.notification-badge {
-    position: absolute;
-    top: -5px;
-    right: -5px;
-    background-color: #ef4444; /* Red Badge Color */
-    color: #ffffff;
-    border-radius: 50%;
-    padding: 4px 8px;
-    font-size: 10px;
-    font-weight: bold;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* Profile Dropdown */
-.profile-dropdown {
-    position: relative;
-}
-
-.dropdown-menu {
-    position: absolute;
-    right: 0;
-    top: 120%;
-    background: #ffffff; /* White Background for Dropdown */
-    color: #1f2937; /* Dark Slate Color for Text */
-    border-radius: 8px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    padding: 0.5rem 0;
-    min-width: 220px;
+    margin-left: 1rem;
+    transition: opacity 0.3s ease;
+  }
+  
+  /* user Side Panel */
+  .user-side-panel-container {
+    width: 250px; /* Default width */
+    background-color: #000000;
+    color: #ecf0f1;
+    position: fixed;
+    left: 0;
+    height: 100vh;
+    overflow-y: auto;
+    transition: width 0.3s ease;
     z-index: 1000;
-}
-
-.dropdown-header {
-    padding: 0.5rem 1rem;
-    border-bottom: 1px solid #e5e7eb;
-    margin-bottom: 0.5rem;
-    font-size: 16px;
-    font-weight: 600;
-    color: #1f2937;
-}
-
-.dropdown-item {
+  }
+  
+  .user-side-panel-container.collapsed {
+    width: 65px; /* Collapsed width */
+  }
+  
+  /* user Side Panel Header */
+  .user-side-panel-header {
     display: flex;
     align-items: center;
-    padding: 0.75rem 1rem;
-    color: #1f2937; /* Dark Slate Color for Text */
-    text-decoration: none;
-    font-size: 15px;
-    transition: background 0.3s, color 0.3s;
-}
-
-.dropdown-item:hover {
-    background: #f3f4f6; /* Light Gray Background */
-    color: #1f2937;
-}
-
-.dropdown-item .fa {
-    margin-right: 8px;
-}
-
-/* Logout Button */
-.btn-logout {
-    display: flex;
-    align-items: center;
-    background-color: #ef4444; /* Red for Logout Button */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 0.75rem 1.5rem;
-    font-size: 16px;
-    font-weight: 500;
-    cursor: pointer;
-    width: 100%;
-    text-align: left;
-    transition: background-color 0.3s, transform 0.2s;
-}
-
-.btn-logout:hover {
-    background-color: #dc2626;
-    transform: scale(1.05);
-}
-
-.btn-logout:active {
-    background-color: #b91c1c;
-}
-
-.btn-logout .fa-sign-out-alt {
-    margin-right: 8px;
-}
-
-/* Side Panel */
-.side-panel {
-    width: 250px;
-    background-color:whitesmoke; /* White Background */
-    border-right: 1px solid #e5e7eb; /* Light Gray Border */
-    padding: 20px;
-    position: fixed; /* Fixed Position for Sidebar */
-    height: calc(100vh - 60px); /* Adjust height to viewport minus navbar height */
-    top: 60px; /* Align with the bottom of the navbar */
-    overflow-y: auto; /* Enable scrolling if sidebar content exceeds viewport height */
-}
-
-.side-panel-title {
-    font-size: 1.25rem;
-    margin-bottom: 20px;
-    color: #1f2937; /* Dark Slate Color for Text */
-}
-
-/* Side Panel Links */
-.side-panel-links {
-    list-style: none;
-    padding: 0;
-}
-
-.side-panel-links li {
-    margin-bottom: 10px;
-}
-
-.side-panel-links button {
+    padding: 1.2rem;
+    background-color: #000000;
+    color: #ecf0f1;
+    border-bottom: 1px solid #000000;
+  }
+  
+  /* user Side Panel Collapse Button */
+  .user-side-panel-collapse-button {
     background: none;
     border: none;
-    font-size: 1rem;
-    color: #1f2937; /* Dark Slate Color for Text */
+    color: #ecf0f1;
+    font-size: 25px; /* Default icon size */
     cursor: pointer;
-    padding: 10px;
-    width: 100%;
-    text-align: left;
-    transition: background-color 0.2s ease;
-}
-
-.side-panel-links button:hover {
-    background-color: #f3f4f6; /* Light Gray Background */
-}
-
-/* Main Section */
-.main-section {
-    flex: 1;
-    margin-left: 250px; /* Space for the fixed sidebar */
-    background: #f9fafb; /* Light Gray Background */
-    overflow-y: auto;
-}
-
-.main-title {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    color: #1f2937; /* Dark Slate for Title */
-}
-
-.main-content {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 1rem;
-}
-
-/* Widget */
-.widget {
-    background: #ffffff; /* White Background */
-    padding: 1.5rem;
-    border: 1px solid #e5e7eb; /* Light Gray Border */
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-.widget h2 {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-    color: #1f2937; /* Dark Slate for Heading */
-}
-
-.widget p {
-    margin-bottom: 1rem;
-    color: #4b5563; /* Dark Gray for Text */
-}
-
-.widget button {
-    background: #3b82f6; /* Blue Background */
-    color: #ffffff;
+    transition: color 0.3s ease, transform 0.3s ease, font-size 0.3s ease; /* Smooth transition */
+  }
+  
+  .user-side-panel-collapse-button:hover,
+  .user-side-panel-collapse-button:focus {
+    color: #1abc9c;
+  }
+  
+  .user-side-panel-collapse-button:active {
+    transform: scale(0.95);
+  }
+  
+  /* Collapse Button Size When Sidebar is Collapsed */
+  .user-side-panel-container.collapsed .user-side-panel-collapse-button {
+    font-size: 24px; /* Slightly larger collapse icon size when collapsed */
+  }
+  
+  /* user Side Panel Links */
+  .user-side-panel-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .user-side-panel-link {
+    display: flex;
+    align-items: center;
+    padding: 1.2rem;
+    background: none;
     border: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 8px;
+    color: #ecf0f1;
     cursor: pointer;
-    font-size: 15px;
-    transition: background 0.3s;
-}
-
-.widget button:hover {
-    background: #2563eb;
-}
+    width: 100%;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+  
+  .user-side-panel-link.active,
+  .user-side-panel-link:hover {
+    background-color: darkgrey;
+    color: #fff;
+  }
+  
+  .user-side-panel-icon {
+    margin-right: 1rem;
+    font-size: 1.1rem; /* Default icon size */
+    transition: font-size 0.3s ease; /* Smooth transition for icon size change */
+  }
+  
+  /* Icon Size When Sidebar is Collapsed */
+  .user-side-panel-container.collapsed .user-side-panel-icon {
+    font-size: 1rem; /* Slightly larger icon size when collapsed */
+  }
+  
+  /* user Dashboard Content */
+  .user-dashboard-content {
+    flex: 1; /* Take up remaining space */
+    margin-top: 10px; /* Space for Navbar */
+    margin-left:295px; /* Default margin */
+    width: calc(100% - 270px); /* Default width */
+    overflow-y: auto; /* Allow scrolling if content overflows */
+    transition: margin-left 0.3s ease, width 0.3s ease, margin-top 0.3s ease;
+  }
+  
+  
+  /* user Main Section */
+  
+  /* Transition Styles */
+  .fade-enter {
+    opacity: 0;
+  }
+  
+  .fade-enter-active {
+    opacity: 1;
+    transition: opacity 300ms;
+  }
+  
+  .fade-exit {
+    opacity: 1;
+  }
+  
+  .fade-exit-active {
+    opacity: 0;
+    transition: opacity 300ms;
+  }
+  
+  /* Additional Styles for user Dashboard Content */
+  .user-content-panel {
+    padding: 2rem;
+    background: #ecf0f1;
+    color: #333;
+    border-radius: 4px;
+  }
+  
+  
