@@ -17,6 +17,8 @@ import Scheduler from './AdminScheduler';
 import EventManagement from './EventManagement';
 import EventList from './EventList';
 import Reports from './Reports';
+import VenuesPage from './Venues';
+import FeedbackReceiver from './Feedback2';
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
@@ -69,13 +71,13 @@ const AdminDashboard = () => {
         case 'reports':
           return <Reports />;
         case 'venues':
-          return <Home />;
+          return <VenuesPage />;
         case 'payments':
           return <Home />;
         case 'sponsors':
           return <Home />;
         case 'feedback':
-          return <Home />;
+          return <FeedbackReceiver />;
         default:
           return <Home />;
     }

@@ -133,16 +133,16 @@ const Reports = () => {
       <p>Generate and view reports and analytics for corporate events.</p>
 
       <div className="summary">
+      <ReportChart data={reportData} />
+      <ReportFilters onChange={setFilters} />
+      <ReportTable data={reportData} />
         <h3>Summary</h3>
         <p><strong>Total Participants:</strong> {totalParticipants}</p>
         <p><strong>Total Revenue:</strong> ${totalRevenue}</p>
         <p><strong>Average Satisfaction:</strong> {averageSatisfaction} / 5</p>
+      <ExportButton data={reportData} />
       </div>
 
-      <ReportFilters onChange={setFilters} />
-      <ReportTable data={reportData} />
-      <ReportChart data={reportData} />
-      <ExportButton data={reportData} />
     </div>
   );
 };
