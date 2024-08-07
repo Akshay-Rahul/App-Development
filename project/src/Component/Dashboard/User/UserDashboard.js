@@ -19,6 +19,7 @@ import MyEvents from './AvailEvents';
 import Reports from './Reports';
 import FeedbackForm from './FeedbackForm';
 import VenuesPage from '../Admin/Venues';
+import Attendees from './Attend';
 
 const UserDashboard = () => {
   const navigate = useNavigate();
@@ -67,7 +68,7 @@ const UserDashboard = () => {
       case 'calendar':
         return <UserScheduler />;
       case 'attendees':
-        return <Home />;
+        return <Attendees />;
       case 'reports':
         return <Reports />;
       case 'venues':
