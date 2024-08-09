@@ -20,6 +20,7 @@ import Reports from './Reports';
 import VenuesPage from './Venues';
 import FeedbackReceiver from './Feedback2';
 import Attendees from './Attend';
+import Sponsors from './Sponers';
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
@@ -73,10 +74,9 @@ const AdminDashboard = () => {
           return <Reports />;
         case 'venues':
           return <VenuesPage />;
-        case 'payments':
-          return <Home />;
+  
         case 'sponsors':
-          return <Home />;
+          return <Sponsors />;
         case 'feedback':
           return <FeedbackReceiver />;
         default:
@@ -102,7 +102,6 @@ const AdminDashboard = () => {
              { key: 'attendees', icon: <FaUsers />, text: 'Attendees' },
              { key: 'reports', icon: <FaChartBar />, text: 'Reports' },
              { key: 'venues', icon: <FaBuilding />, text: 'Venues' },
-             { key: 'payments', icon: <FaDollarSign />, text: 'Payments' },
              { key: 'sponsors', icon: <FaRegHandshake />, text: 'Sponsors' },
              { key: 'feedback', icon: <VscFeedback />, text: 'Feedback' },
           ].map(({ key, icon, text }) => (

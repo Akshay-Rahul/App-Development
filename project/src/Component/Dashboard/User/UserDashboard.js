@@ -20,6 +20,7 @@ import Reports from './Reports';
 import FeedbackForm from './FeedbackForm';
 import VenuesPage from '../Admin/Venues';
 import Attendees from './Attend';
+import Sponsors from './Sponers';
 
 const UserDashboard = () => {
   const navigate = useNavigate();
@@ -74,7 +75,7 @@ const UserDashboard = () => {
       case 'venues':
         return <VenuesPage />;
       case 'sponsors':
-        return <Home />;
+        return <Sponsors />;
       case 'feedback':
         return <FeedbackForm />;
       default:
