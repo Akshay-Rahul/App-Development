@@ -68,10 +68,8 @@
 }
 
 .modal2-content01 {
-  background-color: #fff;
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 520px; /* Smaller width */
   max-width: 90%;
   height: 650px; /* Shorter height */
@@ -116,10 +114,8 @@
 
 .modal2-content01 select {
   font-size: 16px; /* Ensure font size matches the rest of the form */
-  background-color: #fff; /* Consistent background color */
   color: #333; /* Text color */
   cursor: pointer; /* Change cursor to pointer for better UX */
-  border: 1px solid #ccc;
   border-radius: 4px;
   padding: 8px;
   box-sizing: border-box;

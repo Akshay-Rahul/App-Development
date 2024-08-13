@@ -1,65 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
 .feed1-container {
   margin-top: 2rem;
   margin-bottom: 2rem;
+  padding: 0 1rem;
 }
 
 .feed1-title {
-  font-weight: bold;
+  font-weight: 600;
   text-align: center;
   margin-bottom: 2rem;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Poppins', sans-serif;
+  color: #333;
 }
 
 .feed1-grid {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 16px;
+  justify-content: space-between; /* Ensures even spacing between cards */
+  gap: 24px;
 }
 
 .feed1-card {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 1rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s, box-shadow 0.2s;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  flex-basis: calc(50% - 8px); /* 50% width minus gap */
-  margin-bottom: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  background-color: #ffffff;
+  border-radius: 12px;
+  flex-basis: calc(33.333% - 16px); /* Adjusted for three cards in a row */
+  margin-bottom: 24px;
+  border: 1px solid #e0e0e0;
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0; /* Start with 0 opacity for animation */
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px); /* Start from slightly lower position */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .feed1-card:hover {
-  transform: scale(1.02);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transform: translateY(-10px) scale(1.05); /* Elevate card on hover */
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 }
 
 .feed1-avatar {
-  background-color: #1976d2;
+  background-color: #4caf50;
   color: #fff;
 }
 
 .feed1-name {
-  font-weight: bold;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  color: #333;
 }
 
 .feed1-email {
-  color: #666;
+  color: #777;
 }
 
 .feed1-feedback {
   margin-top: 1rem;
-  font-family: 'Roboto', sans-serif;
-  color: #333;
+  font-family: 'Poppins', sans-serif;
+  color: #555;
+  font-size: 1rem;
+  line-height: 1.5;
 }
 
 .feed1-location {
   margin-top: 0.5rem;
-  color: #666;
+  color: #888;
   font-size: 0.9rem;
+  display: flex;
+  align-items: center;
 }
 
 .feed1-rating {
   margin-top: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .feed1-card {
+    flex-basis: 100%; /* Stack cards vertically on smaller screens */
+  }
 }

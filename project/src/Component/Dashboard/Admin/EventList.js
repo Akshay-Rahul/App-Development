@@ -94,63 +94,51 @@ const EventList = () => {
           </div>
         ))}
       </div>
-      <Modal isOpen={!!editEvent} onClose={() => setEditEvent(null)}>
-        <form onSubmit={(e) => { e.preventDefault(); handleSave(editEvent); }}>
-          <h2>Edit Event</h2>
-          <div>
-            <label>
-              Title:
-              <input type="text" name="title" value={editEvent?.title || ''} onChange={(e) => setEditEvent({ ...editEvent, title: e.target.value })} required />
-            </label>
+      <Modal isOpen={editEvent !== null} onClose={() => setEditEvent(null)}>
+        {editEvent && (
+          <div className="edit-event-modal02">
+            <h3>Edit Event</h3>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleSave({
+                  ...editEvent,
+                  title: e.target.title.value,
+                  date: e.target.date.value,
+                  startTime: e.target.startTime.value,
+                  endTime: e.target.endTime.value,
+                  location: e.target.location.value,
+                  description: e.target.description.value,
+                  organizerName: e.target.organizerName.value,
+                });
+              }}
+            >
+              <label htmlFor="title">Title</label>
+              <input id="title" name="title" defaultValue={editEvent.title} />
+              <label htmlFor="date">Date</label>
+              <input id="date" name="date" type="date" defaultValue={editEvent.date} />
+              <label htmlFor="startTime">Start Time</label>
+              <input id="startTime" name="startTime" type="time" defaultValue={editEvent.startTime} />
+              <label htmlFor="endTime">End Time</label>
+              <input id="endTime" name="endTime" type="time" defaultValue={editEvent.endTime} />
+              <label htmlFor="location">Location</label>
+              <input id="location" name="location" defaultValue={editEvent.location} />
+              <label htmlFor="description">Description</label>
+              <textarea id="description" name="description" defaultValue={editEvent.description} />
+              <label htmlFor="organizerName">Organizer Name</label>
+              <input id="organizerName" name="organizerName" defaultValue={editEvent.organizerName} />
+              <button type="submit">Save Changes</button>
+              <button type="button" onClick={() => setEditEvent(null)}>Cancel</button>
+            </form>
           </div>
-          <div>
-            <label>
-              Date:
-              <input type="date" name="date" value={editEvent?.date || ''} onChange={(e) => setEditEvent({ ...editEvent, date: e.target.value })} required />
-            </label>
-          </div>
-          <div>
-            <label>
-              Start Time:
-              <input type="time" name="startTime" value={editEvent?.startTime || ''} onChange={(e) => setEditEvent({ ...editEvent, startTime: e.target.value })} required />
-            </label>
-          </div>
-          <div>
-            <label>
-              End Time:
-              <input type="time" name="endTime" value={editEvent?.endTime || ''} onChange={(e) => setEditEvent({ ...editEvent, endTime: e.target.value })} required />
-            </label>
-          </div>
-          <div>
-            <label>
-              Location:
-              <input type="text" name="location" value={editEvent?.location || ''} onChange={(e) => setEditEvent({ ...editEvent, location: e.target.value })} required />
-            </label>
-          </div>
-          <div>
-            <label>
-              Description:
-              <textarea name="description" value={editEvent?.description || ''} onChange={(e) => setEditEvent({ ...editEvent, description: e.target.value })} required />
-            </label>
-          </div>
-          <div>
-            <label>
-              Organizer Name:
-              <input type="text" name="organizerName" value={editEvent?.organizerName || ''} onChange={(e) => setEditEvent({ ...editEvent, organizerName: e.target.value })} required />
-            </label>
-          </div>
-          <div className="button-group01">
-            <button type="submit">Save</button>
-            <button type="button" onClick={() => setEditEvent(null)}>Cancel</button>
-          </div>
-        </form>
+        )}
       </Modal>
-      <Modal isOpen={!!confirmDelete} onClose={cancelDelete}>
-        <h2>Confirm Delete</h2>
-        <p>Are you sure you want to delete this event?</p>
-        <div className="button-group01">
-          <button onClick={confirmDeleteEvent}>Yes</button>
-          <button onClick={cancelDelete}>No</button>
+      <Modal isOpen={confirmDelete !== null} onClose={cancelDelete}>
+        <div className="delete-event-modal02">
+          <h3>Confirm Deletion</h3>
+          <p>Are you sure you want to delete this event?</p>
+          <button onClick={confirmDeleteEvent}>Yes, Delete</button>
+          <button onClick={cancelDelete}>Cancel</button>
         </div>
       </Modal>
     </div>

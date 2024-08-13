@@ -5,35 +5,31 @@
   min-height: 100vh; /* Ensure full height */
   box-sizing: border-box;
   overflow-x: hidden;
-  padding: 20px; /* Consistent padding */
-  text-align: center; /* Center-align text */
+  padding: 40px; /* Increased padding for better spacing */
 }
 
 .header21 {
-  color:black; /* Bright yellow for header */
-  margin-bottom: 30px; /* Spacing below header */
+  color: black; /* Bright yellow for header */
+  margin-bottom: 40px; /* Increased spacing below header */
   font-size: 2.5rem; /* Larger font size for the header */
   font-weight: bold; /* Bold header */
   text-transform: uppercase; /* Uppercase header text */
+  text-align: center; /* Center-align header */
 }
 
 .summary1, .summary2 {
-  margin-bottom: 30px; /* Spacing between sections */
+  margin-bottom: 40px; /* Increased spacing between sections */
   background: #ffffff; /* White background for sections */
-  padding: 20px; /* Padding inside sections */
-  border-radius: 8px; /* Rounded corners */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  padding: 30px; /* Increased padding inside sections */
+  border-radius: 12px; /* Rounded corners */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
   border: 1px solid #ddd; /* Subtle border */
-}
-
-.summary1 {
-  margin-bottom: 20px; /* Additional spacing for the chart section */
 }
 
 .summary1 h3, .summary2 h3 {
   font-size: 1.75rem; /* Larger font size for section titles */
   margin-bottom: 20px; /* Spacing below section titles */
-  color: #FFD700; /* Yellow color for section titles */
+  color: black; /* Yellow color for section titles */
 }
 
 .summary1 p, .summary2 p {
@@ -46,10 +42,10 @@
   width: 100%;
   border-collapse: collapse;
   background: #ffffff; /* White background for table */
-  border-radius: 8px; /* Rounded corners */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  border-radius: 12px; /* Rounded corners */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
   border: 1px solid #ddd;
-  margin-bottom: 30px; /* Spacing below the table */
+  margin-bottom: 40px; /* Increased spacing below the table */
 }
 
 .reports-table th, .reports-table td {
@@ -76,13 +72,13 @@
 .btn-group {
   display: flex;
   justify-content: center;
-  margin-top: 30px; /* Spacing above button group */
+  margin-top: 40px; /* Increased spacing above button group */
   gap: 20px; /* Space between buttons */
 }
 
 .btn {
-  padding: 12px 24px; /* Padding for buttons */
-  font-size: 1.1rem; /* Font size for buttons */
+  padding: 14px 28px; /* Increased padding for buttons */
+  font-size: 1.2rem; /* Slightly larger font size for buttons */
   border: none;
   border-radius: 6px; /* Rounded corners */
   background-color: #FFD700; /* Bright yellow for buttons */

@@ -79,9 +79,9 @@ const ExportButton = ({ data }) => (
 const fetchReportData = async (type, filters) => {
   // Return mock data for testing
   return [
-    { Event: 'Event 1', Participants: 120, Revenue: 5000, Satisfaction: 4.5 },
-    { Event: 'Event 2', Participants: 95, Revenue: 3000, Satisfaction: 4.2 },
-    { Event: 'Event 3', Participants: 150, Revenue: 7000, Satisfaction: 4.8 },
+    { Event: 'Product Launch Event', Participants: 120, Revenue: 5000, Satisfaction: 4.5 },
+    { Event: 'Annual General Meeting ', Participants: 95, Revenue: 3000, Satisfaction: 4.2 },
+    { Event: 'Corporate Training Workshop', Participants: 150, Revenue: 7000, Satisfaction: 4.8 },
   ];
 };
 
@@ -94,6 +94,7 @@ const ReportFilters = ({ onChange }) => {
 
   return (
     <div className="report-filters">
+      {/* Add filter options here */}
     </div>
   );
 };
@@ -126,7 +127,6 @@ const Reports = () => {
   return (
     <div className="reports-widget">
       <h2 className="header21">Reports</h2>
-      <p>Generate and view reports and analytics for corporate events.</p>
 
       <div className="summary1">
         <ReportChart />
@@ -134,7 +134,7 @@ const Reports = () => {
   
       <ReportFilters onChange={setFilters} />
   
-      <div>
+      <div className="summary2">
         <ReportTable data={reportData} />
         <h3>Summary</h3>
         <p><strong>Total Participants:</strong> {totalParticipants}</p>
