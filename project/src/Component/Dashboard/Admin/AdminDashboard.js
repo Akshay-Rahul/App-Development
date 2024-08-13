@@ -90,7 +90,7 @@ const AdminDashboard = () => {
       <aside className="admin-side-panel-container">
         <div className="admin-side-panel-header">
           <div className="admin-navbar-logo">
-            Admin
+            ADMIN
           </div>
         </div>
         <ul className="admin-side-panel-links">

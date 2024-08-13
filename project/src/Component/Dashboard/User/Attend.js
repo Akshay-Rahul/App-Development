@@ -1,9 +1,14 @@
 import React, { useState } from "react";
+import Modal from "react-modal";
+import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import "./Attend.css";
+
+// Setting up the modal root element for accessibility
+Modal.setAppElement("#root");
 
 const Attendees = () => {
   // Sample data for attendees
-  const attendees = [
+  const [attendees, setAttendees] = useState([
     { name: "John Doe", event: "Tech Conference", amountPaid: "$100", registrationDate: "2024-07-10", venueId: 1 },
     { name: "Jane Smith", event: "Business Summit", amountPaid: "$150", registrationDate: "2024-07-12", venueId: 2 },
     { name: "Alice Johnson", event: "Networking Event", amountPaid: "$200", registrationDate: "2024-07-14", venueId: 3 },
@@ -27,7 +32,7 @@ const Attendees = () => {
     { name: "Ethan Allen", event: "Tech Conference", amountPaid: "$100", registrationDate: "2024-08-21", venueId: 3 },
     { name: "Charlotte King", event: "Business Summit", amountPaid: "$150", registrationDate: "2024-08-23", venueId: 4 },
     { name: "Amelia Scott", event: "Networking Event", amountPaid: "$200", registrationDate: "2024-08-25", venueId: 5 },
-  ];
+  ]);
 
   // Venue data
   const venues = [
@@ -41,52 +46,76 @@ const Attendees = () => {
     { id: 8, name: "San Diego Convention Center", location: "San Diego, CA" },
     { id: 9, name: "Boston Convention and Exhibition Center", location: "Boston, MA" },
   ];
-
-  const [searchTerm, setSearchTerm] = useState("");
-
-  const filteredAttendees = attendees.filter((attendee) =>
-    attendee.name.toLowerCase().startsWith(searchTerm.toLowerCase())
-  );
-
-  return (
-    <div className="attendees-container">
-      <h2>Attendees List</h2>
-      <input
-        type="text"
-        placeholder="Search by name"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        className="search-bar"
-      />
-      <table className="attendees-table">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Event Joined</th>
-            <th>Amount Paid</th>
-            <th>Date of Registration</th>
-            <th>Venue Name</th>
-            <th>Location</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredAttendees.map((attendee, index) => {
-            const venue = venues.find((v) => v.id === attendee.venueId);
-            return (
-              <tr key={index}>
-                <td>{attendee.name}</td>
-                <td>{attendee.event}</td>
-                <td>{attendee.amountPaid}</td>
-                <td>{attendee.registrationDate}</td>
-                <td>{venue?.name || "N/A"}</td>
-                <td>{venue?.location || "N/A"}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-    </div>
-  );
-};
-
-export default Attendees;
+ 
+    const [searchTerm, setSearchTerm] = useState("");
+    const [filterColumn, setFilterColumn] = useState("name");
+  
+    // Filtering attendees based on the selected column and search term
+    const filteredAttendees = attendees.filter((attendee) => {
+      if (filterColumn === "venue") {
+        // Find the venue with the matching venueId
+        const venue = venues.find((v) => v.id === attendee.venueId);
+        // Check if the venue name includes the search term
+        return venue?.name.toLowerCase().includes(searchTerm.toLowerCase());
+      }
+      return attendee[filterColumn]
+        ?.toLowerCase()
+        .includes(searchTerm.toLowerCase());
+    });
+  
+    return (
+      <div className="attendees-container">
+        <h2>Attendees List</h2>
+        <div className="search-filter-container">
+          <input
+            type="text"
+            placeholder={`Search by ${filterColumn}`}
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="search-bar"
+          />
+          <select
+            value={filterColumn}
+            onChange={(e) => setFilterColumn(e.target.value)}
+            className="filter-dropdown"
+          >
+            <option value="name">Name</option>
+            <option value="event">Event</option>
+            <option value="amountPaid">Amount Paid</option>
+            <option value="registrationDate">Registration Date</option>
+            <option value="venue">Venue</option>
+          </select>
+        </div>
+        <table className="attendees-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Event Joined</th>
+              <th>Amount Paid</th>
+              <th>Date of Registration</th>
+              <th>Venue Name</th>
+              <th>Location</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filteredAttendees.map((attendee, index) => {
+              const venue = venues.find((v) => v.id === attendee.venueId);
+              return (
+                <tr key={index}>
+                  <td>{attendee.name}</td>
+                  <td>{attendee.event}</td>
+                  <td>{attendee.amountPaid}</td>
+                  <td>{attendee.registrationDate}</td>
+                  <td>{venue?.name || "N/A"}</td>
+                  <td>{venue?.location || "N/A"}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    );
+  };
+  
+  export default Attendees;
+  

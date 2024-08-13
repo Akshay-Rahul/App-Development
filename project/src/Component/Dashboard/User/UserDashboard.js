@@ -89,7 +89,7 @@ const UserDashboard = () => {
       <aside className="user-side-panel-container">
         <div className="user-side-panel-header">
           <div className="user-navbar-logo">
-            User
+            USER
           </div>
         </div>
         <ul className="user-side-panel-links">

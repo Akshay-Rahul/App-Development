@@ -37,7 +37,6 @@ const Homepage = () => {
 
   return (
     <div className="full-page-container">
-      <Chatbot />
       <Navbar transparent />
       <div className="hero-container">
         <div className="hero-content">
@@ -99,6 +98,8 @@ const Homepage = () => {
             <a href="https://www.linkedin.com">
               <FaLinkedin size={24} />
             </a>
+          </div>
+          <div>
           </div>
           <p>&copy; 2024 Yaska. All rights reserved.</p>
         </div>

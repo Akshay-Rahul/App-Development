@@ -21,7 +21,7 @@ const FeedbackReceiver = () => {
     <Container component="main" maxWidth="md" className="feed1-container">
       <CssBaseline />
       <Typography variant="h4" component="h1" className="feed1-title">
-        User Feedback
+        USER
       </Typography>
       <Box className="feed1-grid">
         {feedbacks.map((feedback, index) => (

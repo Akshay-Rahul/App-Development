@@ -47,16 +47,25 @@ const Attendees = () => {
     { id: 9, name: "Boston Convention and Exhibition Center", location: "Boston, MA" },
   ];
 
-
   const [searchTerm, setSearchTerm] = useState("");
+  const [filterColumn, setFilterColumn] = useState("name");
   const [editModalIsOpen, setEditModalIsOpen] = useState(false);
   const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(null);
   const [editedAttendee, setEditedAttendee] = useState(null);
 
-  const filteredAttendees = attendees.filter((attendee) =>
-    attendee.name.toLowerCase().startsWith(searchTerm.toLowerCase())
-  );
+  // Filtering attendees based on the selected column and search term
+  const filteredAttendees = attendees.filter((attendee) => {
+    if (filterColumn === "venue") {
+      // Find the venue with the matching venueId
+      const venue = venues.find((v) => v.id === attendee.venueId);
+      // Check if the venue name includes the search term
+      return venue?.name.toLowerCase().includes(searchTerm.toLowerCase());
+    }
+    return attendee[filterColumn]
+      ?.toLowerCase()
+      .includes(searchTerm.toLowerCase());
+  });
 
   const handleEdit = (index) => {
     setCurrentIndex(index);
@@ -91,13 +100,26 @@ const Attendees = () => {
   return (
     <div className="attendees-container">
       <h2>Attendees List</h2>
-      <input
-        type="text"
-        placeholder="Search by name"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        className="search-bar"
-      />
+      <div className="search-filter-container">
+        <input
+          type="text"
+          placeholder={`Search by ${filterColumn}`}
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="search-bar"
+        />
+        <select
+          value={filterColumn}
+          onChange={(e) => setFilterColumn(e.target.value)}
+          className="filter-dropdown"
+        >
+          <option value="name">Name</option>
+          <option value="event">Event</option>
+          <option value="amountPaid">Amount Paid</option>
+          <option value="registrationDate">Registration Date</option>
+          <option value="venue">Venue</option>
+        </select>
+      </div>
       <table className="attendees-table">
         <thead>
           <tr>
@@ -122,10 +144,16 @@ const Attendees = () => {
                 <td>{venue?.name || "N/A"}</td>
                 <td>{venue?.location || "N/A"}</td>
                 <td>
-                  <button onClick={() => handleEdit(index)} className="edit-button">
+                  <button
+                    className="edit-button"
+                    onClick={() => handleEdit(index)}
+                  >
                     <FaEdit />
                   </button>
-                  <button onClick={() => handleDelete(index)} className="delete-button">
+                  <button
+                    className="delete-button"
+                    onClick={() => handleDelete(index)}
+                  >
                     <FaTrashAlt />
                   </button>
                 </td>
@@ -135,90 +163,92 @@ const Attendees = () => {
         </tbody>
       </table>
 
-      {/* Modal for editing attendee */}
-      {editModalIsOpen && (
-        <Modal
-          isOpen={editModalIsOpen}
-          onRequestClose={handleModalClose}
-          contentLabel="Edit Attendee"
-          className="edit-modal"
-          overlayClassName="edit-modal-overlay"
-        >
-          <h2>Edit Attendee</h2>
-          <form>
-            <label>Name:
-              <input
-                type="text"
-                value={editedAttendee?.name || ""}
-                onChange={(e) => setEditedAttendee({ ...editedAttendee, name: e.target.value })}
-              />
-            </label>
-            <label>Event:
-              <input
-                type="text"
-                value={editedAttendee?.event || ""}
-                onChange={(e) => setEditedAttendee({ ...editedAttendee, event: e.target.value })}
-              />
-            </label>
-            <label>Amount Paid:
-              <input
-                type="text"
-                value={editedAttendee?.amountPaid || ""}
-                onChange={(e) => setEditedAttendee({ ...editedAttendee, amountPaid: e.target.value })}
-              />
-            </label>
-            <label>Registration Date:
-              <input
-                type="date"
-                value={editedAttendee?.registrationDate || ""}
-                onChange={(e) => setEditedAttendee({ ...editedAttendee, registrationDate: e.target.value })}
-              />
-            </label>
-            <label>Venue:
-              <select
-                value={editedAttendee?.venueId || ""}
-                onChange={(e) => setEditedAttendee({ ...editedAttendee, venueId: parseInt(e.target.value) })}
-              >
-                {venues.map((venue) => (
-                  <option key={venue.id} value={venue.id}>
-                    {venue.name}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <div className="modal-buttons">
-              <button type="button" onClick={handleModalSave} className="save-button">
-                Save
-              </button>
-              <button type="button" onClick={handleModalClose} className="cancel-button">
-                Cancel
-              </button>
-            </div>
-          </form>
-        </Modal>
-      )}
-
-      {/* Modal for deleting attendee */}
-      {deleteModalIsOpen && (
-        <Modal
-          isOpen={deleteModalIsOpen}
-          onRequestClose={() => setDeleteModalIsOpen(false)}
-          contentLabel="Confirm Delete"
-          className="delete-modal"
-          overlayClassName="delete-modal-overlay"
-        >
-          <h2>Confirm Delete</h2>
-          <p>Are you sure you want to delete this attendee?</p>
-          <div className="modal-buttons">
-            <button type="button" onClick={confirmDelete} className="confirm-button">
-              Confirm
-            </button>
-            <button type="button" onClick={() => setDeleteModalIsOpen(false)} className="cancel-delete-button">
-              Cancel
-            </button>
+      {/* Edit Modal */}
+      <Modal
+        isOpen={editModalIsOpen}
+        onRequestClose={handleModalClose}
+        contentLabel="Edit Attendee"
+        className="modal"
+        overlayClassName="overlay"
+      >
+        {editedAttendee && (
+          <div className="modal-content">
+            <h2>Edit Attendee</h2>
+            <input
+              type="text"
+              value={editedAttendee.name}
+              onChange={(e) =>
+                setEditedAttendee({ ...editedAttendee, name: e.target.value })
+              }
+              placeholder="Name"
+            />
+            <input
+              type="text"
+              value={editedAttendee.event}
+              onChange={(e) =>
+                setEditedAttendee({ ...editedAttendee, event: e.target.value })
+              }
+              placeholder="Event"
+            />
+            <input
+              type="text"
+              value={editedAttendee.amountPaid}
+              onChange={(e) =>
+                setEditedAttendee({
+                  ...editedAttendee,
+                  amountPaid: e.target.value,
+                })
+              }
+              placeholder="Amount Paid"
+            />
+            <input
+              type="text"
+              value={editedAttendee.registrationDate}
+              onChange={(e) =>
+                setEditedAttendee({
+                  ...editedAttendee,
+                  registrationDate: e.target.value,
+                })
+              }
+              placeholder="Registration Date"
+            />
+            <select
+              value={editedAttendee.venueId}
+              onChange={(e) =>
+                setEditedAttendee({
+                  ...editedAttendee,
+                  venueId: parseInt(e.target.value),
+                })
+              }
+            >
+              <option value="">Select Venue</option>
+              {venues.map((venue) => (
+                <option key={venue.id} value={venue.id}>
+                  {venue.name}
+                </option>
+              ))}
+            </select>
+            <button onClick={handleModalSave}>Save</button>
+            <button onClick={handleModalClose}>Cancel</button>
           </div>
-        </Modal>
-      )}
+        )}
+      </Modal>
+
+      {/* Delete Confirmation Modal */}
+      <Modal
+        isOpen={deleteModalIsOpen}
+        onRequestClose={() => setDeleteModalIsOpen(false)}
+        contentLabel="Delete Confirmation"
+        className="modal"
+        overlayClassName="overlay"
+      >
+        <div className="modal-content">
+          <h2>Confirm Deletion</h2>
+          <p>Are you sure you want to delete this attendee?</p>
+          <button onClick={confirmDelete}>Yes, Delete</button>
+          <button onClick={() => setDeleteModalIsOpen(false)}>Cancel</button>
+        </div>
+      </Modal>
     </div>
   );
 };
