@@ -15,7 +15,7 @@ const About = () => {
           </p>
           <Link to="/team" className="team-button">Meet Our Team</Link>
         </div>
-        <img src={aboutImage} alt="About Us" className="section-image1" />
+        <img src="https://images.pexels.com/photos/7648025/pexels-photo-7648025.jpeg?auto=compress&cs=tinysrgb&w=600" alt="About Us" className="section-image1" /> 
       </div>
     </section>
   );

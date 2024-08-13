@@ -5,6 +5,7 @@ const TeamMembers = () => {
   return (
     <div className="team-members-section">
       <section>
+        <h2 className="team-members-heading">Team Members</h2>
         <div className="container">
           {/* Card1 */}
           <div className="card">

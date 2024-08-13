@@ -37,15 +37,14 @@
   position: relative;
   width: 300px;
   height: 400px;
-  background: rgba(0, 0, 0, 0.7); /* Black background with 70% transparency */
+  background: rgb(0, 0, 0); /* Black background with 70% transparency */
   margin: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Similar shadow to .wrapper */
   border-radius: 10px; /* Updated to match .wrapper */
   display: flex;
   justify-content: center;
   align-items: center;
-  backdrop-filter: blur(5px);
-  transition: 0.5s;
+  flex-direction: column; /* Align content in column for proper layout */
 }
 
 .content {
@@ -54,13 +53,9 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  opacity: 0.5;
+  opacity: 1; /* Always visible */
   transition: 0.5s;
-}
-
-.container .card:hover .content {
-  opacity: 1;
-  transform: translateY(-20px);
+  transform: translateY(0); /* No initial transform */
 }
 
 .avatarImg {
@@ -113,14 +108,9 @@
 .socialIcons li {
   list-style: none;
   margin: 0 10px;
-  opacity: 0;
-  transform: translateY(40px);
+  opacity: 1; /* Always visible */
+  transform: translateY(0); /* No initial transform */
   transition: 0.5s;
-}
-
-.container .card:hover .socialIcons li {
-  opacity: 1;
-  transform: translateY(0px);
 }
 
 .socialIcons li a {
@@ -133,3 +123,13 @@
   color: #f39c12; /* Matching hover color from .login-page */
   transform: scale(1.2); /* Slightly increase the size on hover */
 }
+.team-members-heading {
+  font-size: 2.5rem; /* Adjust the font size as needed */
+  color: black;
+  text-align: center;
+  margin-bottom: 40px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
